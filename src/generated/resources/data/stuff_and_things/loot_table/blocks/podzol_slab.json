@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stuff_and_things:podzol_slab",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "type": "double"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "stuff_and_things:podzol_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stuff_and_things:podzol_slab",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "type": "top"
+              }
+            }
+          ],
+          "name": "stuff_and_things:podzol_slab"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stuff_and_things:podzol_slab",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "type": "bottom"
+              }
+            }
+          ],
+          "name": "stuff_and_things:podzol_slab"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "stuff_and_things:blocks/podzol_slab"
+}

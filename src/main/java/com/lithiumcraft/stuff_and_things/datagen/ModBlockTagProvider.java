@@ -1,0 +1,210 @@
+package com.lithiumcraft.stuff_and_things.datagen;
+
+import com.lithiumcraft.stuff_and_things.StuffAndThings;
+import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
+import com.lithiumcraft.stuff_and_things.block.LayersBlock;
+import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
+import com.lithiumcraft.stuff_and_things.util.ModTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.SlabBlock;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
+
+import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
+
+public class ModBlockTagProvider extends BlockTagsProvider {
+
+    public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, StuffAndThings.MOD_ID, existingFileHelper);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.Provider provider) {
+        // Static
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(LayeredBlocks.ANDESITE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.BLACKSTONE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.BLACKSTONE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.BLUE_ICE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.CALCITE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.COBBLED_DEEPSLATE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.COBBLESTONE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.CRIMSON_NYLIUM_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DARK_PRISMARINE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DEEPSLATE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DIORITE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.END_STONE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.GLASS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.GRANITE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.ICE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MOSSY_COBBLESTONE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MOSSY_STONE_BRICKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.NETHER_BRICKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.NETHERRACK_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.OBSIDIAN_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.PACKED_ICE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.PACKED_MUD_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.PRISMARINE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.RED_NETHER_BRICKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.STONE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.STONE_BRICKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.TUFF_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.WARPED_NYLIUM_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.STAINED_GLASS_LAYERS.values().stream()
+                        .map(DeferredHolder::get)
+                        .toArray(Block[]::new))
+
+                .add(SlabBlocks.BLUE_ICE_SLAB.get())
+                .add(SlabBlocks.CALCITE_SLAB.get())
+                .add(SlabBlocks.CRIMSON_NYLIUM_SLAB.get())
+                .add(SlabBlocks.END_STONE_SLAB.get())
+                .add(SlabBlocks.ICE_SLAB.get())
+                .add(SlabBlocks.NETHERRACK_SLAB.get())
+                .add(SlabBlocks.OBSIDIAN_SLAB.get())
+                .add(SlabBlocks.PACKED_ICE_SLAB.get())
+                .add(SlabBlocks.PACKED_MUD_SLAB.get())
+                .add(SlabBlocks.TUFF_SLAB.get())
+                .add(SlabBlocks.WARPED_NYLIUM_SLAB.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(LayeredBlocks.ACACIA_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.BAMBOO_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.BIRCH_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.CHERRY_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.CRIMSON_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DARK_OAK_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.JUNGLE_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MANGROVE_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.OAK_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.SPRUCE_PLANKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.WARPED_PLANKS_LAYERS_BLOCK.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_HOE)
+                .add(LayeredBlocks.MOSS_BLOCK_LAYERS_BLOCK.get())
+                .add(SlabBlocks.MOSS_BLOCK_SLAB.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .add(LayeredBlocks.CLAY_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.COARSE_DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.GRASS_BLOCK_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.GRAVEL_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MUD_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MYCELIUM_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.PODZOL_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.RED_SAND_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.ROOTED_DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.SAND_LAYERS_BLOCK.get())
+
+                .add(SlabBlocks.CLAY_SLAB.get())
+                .add(SlabBlocks.COARSE_DIRT_SLAB.get())
+                .add(SlabBlocks.DIRT_SLAB.get())
+                .add(SlabBlocks.GRASS_BLOCK_SLAB.get())
+                .add(SlabBlocks.GRAVEL_SLAB.get())
+                .add(SlabBlocks.MUD_SLAB.get())
+                .add(SlabBlocks.MYCELIUM_SLAB.get())
+                .add(SlabBlocks.PACKED_MUD_SLAB.get())
+                .add(SlabBlocks.PODZOL_SLAB.get())
+                .add(SlabBlocks.RED_SAND_SLAB.get())
+                .add(SlabBlocks.ROOTED_DIRT_SLAB.get())
+                .add(SlabBlocks.SAND_SLAB.get());
+
+        this.tag(BlockTags.NEEDS_STONE_TOOL);
+
+        this.tag(BlockTags.NEEDS_IRON_TOOL);
+
+        this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(LayeredBlocks.OBSIDIAN_LAYERS_BLOCK.get())
+                .add(SlabBlocks.OBSIDIAN_SLAB.get());
+
+        // Add all registered translucent blocks (like glass layers)
+        this.tag(ModTags.Blocks.TRANSLUCENT)
+                .add(LayeredBlocks.GLASS_LAYERS_BLOCK.value())
+                .add(LayeredBlocks.STAINED_GLASS_LAYERS.values().stream()
+                        .map(DeferredHolder::get)
+                        .toArray(Block[]::new));
+
+
+
+        for (DeferredHolder<Block, LayersBlock> block : LayeredBlocks.getAllBlocks()) {
+            String blockName = block.getId().getPath();
+
+            this.tag(ModTags.Blocks.LAYER_BLOCKS).add(block.get());
+        }
+
+        for (DeferredHolder<Block, SlabBlock> block : SlabBlocks.getSlabBlocks()) {
+            String blockName = block.getId().getPath();
+
+            this.tag(ModTags.Blocks.SLABS).add(block.get());
+            this.tag(BlockTags.SLABS).add(block.get());
+        }
+
+        this.tag(BlockTags.DIRT)
+                .add(LayeredBlocks.COARSE_DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.GRASS_BLOCK_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MYCELIUM_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.PODZOL_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.ROOTED_DIRT_LAYERS_BLOCK.get())
+
+                .add(SlabBlocks.COARSE_DIRT_SLAB.get())
+                .add(SlabBlocks.DIRT_SLAB.get())
+                .add(SlabBlocks.GRASS_BLOCK_SLAB.get())
+                .add(SlabBlocks.MYCELIUM_SLAB.get())
+                .add(SlabBlocks.PODZOL_SLAB.get())
+                .add(SlabBlocks.ROOTED_DIRT_SLAB.get());
+
+        this.tag(BlockTags.SAND)
+                .add(LayeredBlocks.SAND_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.RED_SAND_LAYERS_BLOCK.get())
+
+                .add(SlabBlocks.SAND_SLAB.get())
+                .add(SlabBlocks.RED_SAND_SLAB.get());
+
+        this.tag(BlockTags.MUSHROOM_GROW_BLOCK)
+                .add(LayeredBlocks.CRIMSON_NYLIUM_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MYCELIUM_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.PODZOL_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.WARPED_NYLIUM_LAYERS_BLOCK.get())
+
+                .add(SlabBlocks.CRIMSON_NYLIUM_SLAB.get())
+                .add(SlabBlocks.MYCELIUM_SLAB.get())
+                .add(SlabBlocks.PODZOL_SLAB.get())
+                .add(SlabBlocks.WARPED_NYLIUM_SLAB.get());
+
+        this.tag(BlockTags.AZALEA_GROWS_ON)
+                .add(LayeredBlocks.COARSE_DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.GRASS_BLOCK_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MOSS_BLOCK_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MUD_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MYCELIUM_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.PODZOL_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.RED_SAND_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.ROOTED_DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.SAND_LAYERS_BLOCK.get())
+
+                .add(SlabBlocks.COARSE_DIRT_SLAB.get())
+                .add(SlabBlocks.DIRT_SLAB.get())
+                .add(SlabBlocks.GRASS_BLOCK_SLAB.get())
+                .add(SlabBlocks.MOSS_BLOCK_SLAB.get())
+                .add(SlabBlocks.MUD_SLAB.get())
+                .add(SlabBlocks.MYCELIUM_SLAB.get())
+                .add(SlabBlocks.PODZOL_SLAB.get())
+                .add(SlabBlocks.RED_SAND_SLAB.get())
+                .add(SlabBlocks.ROOTED_DIRT_SLAB.get())
+                .add(SlabBlocks.SAND_SLAB.get());
+
+        this.tag(BlockTags.NYLIUM)
+                .add(LayeredBlocks.CRIMSON_NYLIUM_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.WARPED_NYLIUM_LAYERS_BLOCK.get())
+
+                .add(SlabBlocks.CRIMSON_NYLIUM_SLAB.get())
+                .add(SlabBlocks.WARPED_NYLIUM_SLAB.get());
+    }
+}

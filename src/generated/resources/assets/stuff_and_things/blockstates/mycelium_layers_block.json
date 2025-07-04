@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "layers=1": {
+      "model": "stuff_and_things:block/mycelium_layers_block_1_cutout"
+    },
+    "layers=2": {
+      "model": "stuff_and_things:block/mycelium_layers_block_2_cutout"
+    },
+    "layers=3": {
+      "model": "stuff_and_things:block/mycelium_layers_block_3_cutout"
+    },
+    "layers=4": {
+      "model": "stuff_and_things:block/mycelium_layers_block_4_cutout"
+    },
+    "layers=5": {
+      "model": "stuff_and_things:block/mycelium_layers_block_5_cutout"
+    },
+    "layers=6": {
+      "model": "stuff_and_things:block/mycelium_layers_block_6_cutout"
+    },
+    "layers=7": {
+      "model": "stuff_and_things:block/mycelium_layers_block_7_cutout"
+    },
+    "layers=8": {
+      "model": "stuff_and_things:block/mycelium_layers_block_8_cutout"
+    }
+  }
+}

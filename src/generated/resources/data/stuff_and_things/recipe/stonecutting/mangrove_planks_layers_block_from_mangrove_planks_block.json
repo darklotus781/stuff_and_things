@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:mangrove_planks"
+  },
+  "result": {
+    "count": 8,
+    "id": "stuff_and_things:mangrove_planks_layers_block"
+  }
+}

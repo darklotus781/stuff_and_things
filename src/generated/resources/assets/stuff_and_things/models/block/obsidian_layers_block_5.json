@@ -1,0 +1,10 @@
+{
+  "parent": "stuff_and_things:block/layers_block_5",
+  "textures": {
+    "bottom": "minecraft:block/obsidian",
+    "overlay": "minecraft:block/obsidian",
+    "particle": "minecraft:block/obsidian",
+    "side": "minecraft:block/obsidian",
+    "top": "minecraft:block/obsidian"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "stuff_and_things:block/layers_block_3",
+  "textures": {
+    "bottom": "minecraft:block/netherrack",
+    "overlay": "minecraft:block/warped_nylium_side",
+    "particle": "minecraft:block/dirt",
+    "side": "minecraft:block/warped_nylium_side",
+    "top": "minecraft:block/warped_nylium"
+  }
+}

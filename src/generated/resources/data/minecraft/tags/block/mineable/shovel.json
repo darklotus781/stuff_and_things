@@ -1,0 +1,27 @@
+{
+  "values": [
+    "stuff_and_things:clay_layers_block",
+    "stuff_and_things:coarse_dirt_layers_block",
+    "stuff_and_things:dirt_layers_block",
+    "stuff_and_things:grass_block_layers_block",
+    "stuff_and_things:gravel_layers_block",
+    "stuff_and_things:mud_layers_block",
+    "stuff_and_things:mycelium_layers_block",
+    "stuff_and_things:podzol_layers_block",
+    "stuff_and_things:red_sand_layers_block",
+    "stuff_and_things:rooted_dirt_layers_block",
+    "stuff_and_things:sand_layers_block",
+    "stuff_and_things:clay_slab",
+    "stuff_and_things:coarse_dirt_slab",
+    "stuff_and_things:dirt_slab",
+    "stuff_and_things:grass_block_slab",
+    "stuff_and_things:gravel_slab",
+    "stuff_and_things:mud_slab",
+    "stuff_and_things:mycelium_slab",
+    "stuff_and_things:packed_mud_slab",
+    "stuff_and_things:podzol_slab",
+    "stuff_and_things:red_sand_slab",
+    "stuff_and_things:rooted_dirt_slab",
+    "stuff_and_things:sand_slab"
+  ]
+}

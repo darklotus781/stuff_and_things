@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:red_sand"
+  },
+  "result": {
+    "count": 8,
+    "id": "stuff_and_things:red_sand_layers_block"
+  }
+}

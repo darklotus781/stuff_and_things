@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:packed_mud"
+  },
+  "result": {
+    "count": 8,
+    "id": "stuff_and_things:packed_mud_layers_block"
+  }
+}

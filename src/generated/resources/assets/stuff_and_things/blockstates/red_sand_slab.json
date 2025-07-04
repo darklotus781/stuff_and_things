@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "stuff_and_things:block/red_sand_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/red_sand"
+    },
+    "type=top": {
+      "model": "stuff_and_things:block/red_sand_slab_top"
+    }
+  }
+}

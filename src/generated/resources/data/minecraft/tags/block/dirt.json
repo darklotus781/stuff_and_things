@@ -1,0 +1,16 @@
+{
+  "values": [
+    "stuff_and_things:coarse_dirt_layers_block",
+    "stuff_and_things:dirt_layers_block",
+    "stuff_and_things:grass_block_layers_block",
+    "stuff_and_things:mycelium_layers_block",
+    "stuff_and_things:podzol_layers_block",
+    "stuff_and_things:rooted_dirt_layers_block",
+    "stuff_and_things:coarse_dirt_slab",
+    "stuff_and_things:dirt_slab",
+    "stuff_and_things:grass_block_slab",
+    "stuff_and_things:mycelium_slab",
+    "stuff_and_things:podzol_slab",
+    "stuff_and_things:rooted_dirt_slab"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "layers=1": {
+      "model": "stuff_and_things:block/brown_stained_glass_layers_block_1_translucent"
+    },
+    "layers=2": {
+      "model": "stuff_and_things:block/brown_stained_glass_layers_block_2_translucent"
+    },
+    "layers=3": {
+      "model": "stuff_and_things:block/brown_stained_glass_layers_block_3_translucent"
+    },
+    "layers=4": {
+      "model": "stuff_and_things:block/brown_stained_glass_layers_block_4_translucent"
+    },
+    "layers=5": {
+      "model": "stuff_and_things:block/brown_stained_glass_layers_block_5_translucent"
+    },
+    "layers=6": {
+      "model": "stuff_and_things:block/brown_stained_glass_layers_block_6_translucent"
+    },
+    "layers=7": {
+      "model": "stuff_and_things:block/brown_stained_glass_layers_block_7_translucent"
+    },
+    "layers=8": {
+      "model": "stuff_and_things:block/brown_stained_glass_layers_block_8_translucent"
+    }
+  }
+}

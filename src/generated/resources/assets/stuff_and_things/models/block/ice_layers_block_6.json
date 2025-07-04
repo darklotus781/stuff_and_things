@@ -1,0 +1,10 @@
+{
+  "parent": "stuff_and_things:block/layers_block_6",
+  "textures": {
+    "bottom": "minecraft:block/ice",
+    "overlay": "minecraft:block/ice",
+    "particle": "minecraft:block/ice",
+    "side": "minecraft:block/ice",
+    "top": "minecraft:block/ice"
+  }
+}

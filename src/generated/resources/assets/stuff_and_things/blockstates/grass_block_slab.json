@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "stuff_and_things:block/grass_block_slab"
+    },
+    "type=double": {
+      "model": "stuff_and_things:block/grass_block_slab_full"
+    },
+    "type=top": {
+      "model": "stuff_and_things:block/grass_block_slab_top"
+    }
+  }
+}

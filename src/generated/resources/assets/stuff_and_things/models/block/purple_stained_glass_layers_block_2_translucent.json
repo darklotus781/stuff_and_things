@@ -1,0 +1,9 @@
+{
+  "parent": "stuff_and_things:block/layers_block_2_translucent",
+  "textures": {
+    "bottom": "minecraft:block/purple_stained_glass",
+    "particle": "minecraft:block/purple_stained_glass",
+    "side": "minecraft:block/purple_stained_glass",
+    "top": "minecraft:block/purple_stained_glass"
+  }
+}

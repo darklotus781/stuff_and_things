@@ -1,0 +1,10 @@
+{
+  "parent": "stuff_and_things:block/layers_block_2",
+  "textures": {
+    "bottom": "minecraft:block/moss_block",
+    "overlay": "minecraft:block/moss_block",
+    "particle": "minecraft:block/moss_block",
+    "side": "minecraft:block/moss_block",
+    "top": "minecraft:block/moss_block"
+  }
+}

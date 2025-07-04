@@ -1,0 +1,10 @@
+{
+  "parent": "stuff_and_things:block/layers_block_4_cutout",
+  "textures": {
+    "bottom": "minecraft:block/dirt",
+    "overlay": "minecraft:block/podzol_side",
+    "particle": "minecraft:block/dirt",
+    "side": "minecraft:block/podzol_side",
+    "top": "minecraft:block/podzol_top"
+  }
+}

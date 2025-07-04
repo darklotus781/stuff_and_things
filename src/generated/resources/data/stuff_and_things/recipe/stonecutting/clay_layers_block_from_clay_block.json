@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:clay"
+  },
+  "result": {
+    "count": 8,
+    "id": "stuff_and_things:clay_layers_block"
+  }
+}
