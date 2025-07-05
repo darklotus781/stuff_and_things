@@ -41,70 +41,64 @@ public class ModLayeredBlockLootProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        LayeredBlocks.getAllBlocks().forEach(block -> {
-            String baseName = block.getId().getPath().replace("_layers_block", "");
-
-            add(block.get(), createLayeredDropTable(block.get()));
-        });
-//        Set<String> excluded = LayeredBlocks.STAINED_GLASS_LAYERS.keySet();
+//        LayeredBlocks.getAllBlocks().forEach(block -> {
+//            String baseName = block.getId().getPath().replace("_layers_block", "");
 //
-//        StreamSupport.stream(LayeredBlocks.getAllBlocks().spliterator(), false)
-//                .filter(block -> !excluded.contains(block.getId().getPath()))
-//                .forEach(block -> {
-//                    add(block.get(), createLayeredDropTable(block.get()));
-//                });
-//
-//        LayeredBlocks.STAINED_GLASS_LAYERS.values().forEach(holder -> {
-//            Block block = holder.get();
-//            add(block, silkTouchLayeredDrop(block, 8));
+//            add(block.get(), createLayeredDropTable(block.get()));
 //        });
+
+        Set<String> excluded = LayeredBlocks.STAINED_GLASS_LAYERS.keySet();
+
+        StreamSupport.stream(LayeredBlocks.getAllBlocks().spliterator(), false)
+                .filter(holder -> !excluded.contains(holder.getId().getPath()))
+                .forEach(holder -> {
+                    Block block = holder.get();
+                    add(block, createLayeredDropTable(block, 8));
+                });
+
+        LayeredBlocks.STAINED_GLASS_LAYERS.values().forEach(holder -> {
+            Block block = holder.get();
+            add(block, createSilkTouchLayeredDrop(block, 8));
+        });
     }
 
-//    private LootTable.Builder silkTouchLayeredDrop(Block block, int layerCount) {
-//        LootTable.Builder table = LootTable.lootTable();
-//
-//        for (int i = 1; i <= layerCount; i++) {
-//            LootItemCondition.Builder stateCondition = LootItemBlockStatePropertyCondition
-//                    .hasBlockStateProperties(block)
-//                    .setProperties(StatePropertiesPredicate.Builder.properties()
-//                            .hasProperty(LayersBlock.LAYERS, i));
-//
-//            LootItemCondition.Builder silkTouchCondition = MatchTool.toolMatches(ItemPredicate.Builder.item().of(
-//                    // this accepts any item that can mine the block with silk touch
-//                    // no enchantment check required directly
-//                    block.asItem()
-//            ));
-//
-//            table.withPool(
-//                    LootPool.lootPool()
-//                            .setRolls(ConstantValue.exactly(1))
-//                            .when(stateCondition)
-//                            .add(LootItem.lootTableItem(block)
-//                                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(i)))
-//                                    .when(silkTouchCondition)
-//                            )
-//            );
-//        }
-//
-//        return table;
-//    }
+    private LootTable.Builder createSilkTouchLayeredDrop(Block block, int maxLayers) {
+        LootTable.Builder table = LootTable.lootTable();
 
-
-    private LootTable.Builder createLayeredDropTable(Block block) {
-        LootPool.Builder pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1));
-        for (int layer = 1; layer <= 8; layer++) {
-            pool.add(LootItem.lootTableItem(block)
-                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(layer)))
+        for (int i = 1; i <= maxLayers; i++) {
+            LootPool.Builder pool = LootPool.lootPool()
                     .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                             .setProperties(StatePropertiesPredicate.Builder.properties()
-                                    .hasProperty(LayersBlock.LAYERS, layer)))
-            );
+                                    .hasProperty(LayersBlock.LAYERS, i)))
+                    .when(this.hasSilkTouch())
+                    .add(applyExplosionDecay(block,
+                            LootItem.lootTableItem(block)
+                                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(i)))))
+                    .setRolls(ConstantValue.exactly(1));
+
+            table.withPool(pool);
         }
-        return LootTable.lootTable().withPool(pool);
+
+        return table;
     }
 
-    protected LootTable.Builder createSilkTouchOnly(Block block, Item item) {
-        return createSilkTouchDispatchTable(block, LootItem.lootTableItem(item));
+    private LootTable.Builder createLayeredDropTable(Block block, int maxLayers) {
+        LootTable.Builder table = LootTable.lootTable();
+
+        for (int i = 1; i <= maxLayers; i++) {
+            LootPool.Builder pool = LootPool.lootPool()
+                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                    .hasProperty(LayersBlock.LAYERS, i)))
+                    .add(applyExplosionDecay(block,
+                            LootItem.lootTableItem(block)
+                                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(i)))))
+                    .setRolls(ConstantValue.exactly(1));
+
+            table.withPool(pool);
+        }
+
+        return table;
     }
 
     @Override
