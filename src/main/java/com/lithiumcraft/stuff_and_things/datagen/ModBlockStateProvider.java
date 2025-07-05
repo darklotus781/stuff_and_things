@@ -3,11 +3,11 @@ package com.lithiumcraft.stuff_and_things.datagen;
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
 import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
 import com.lithiumcraft.stuff_and_things.block.LayersBlock;
+import com.lithiumcraft.stuff_and_things.block.ModBlocks;
 import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
 import com.lithiumcraft.stuff_and_things.util.SpecialBlockTextureRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -30,8 +30,57 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         generateLayeredBlockStates();
-//        generateLayeredBlockStates(LayeredBlocks.STAINED_GLASS_LAYERS);
         generateSlabBlockStates();
+
+        lightBlockWithItem(ModBlocks.BLUE_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.BLACK_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.BROWN_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.CYAN_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.GRAY_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.GREEN_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.LIGHT_BLUE_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.LIGHT_GRAY_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.LIME_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.MAGENTA_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.ORANGE_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.PINK_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.PURPLE_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.RED_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.WHITE_LIGHT_BLOCK);
+        lightBlockWithItem(ModBlocks.YELLOW_LIGHT_BLOCK);
+
+        glassLightBlockWithItem(ModBlocks.BLUE_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.BLACK_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.BROWN_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.CYAN_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.GRAY_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.GREEN_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.LIGHT_BLUE_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.LIGHT_GRAY_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.LIME_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.MAGENTA_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.ORANGE_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.PINK_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.PURPLE_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.RED_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.WHITE_GLASS_LIGHT_BLOCK);
+        glassLightBlockWithItem(ModBlocks.YELLOW_GLASS_LIGHT_BLOCK);
+    }
+
+    private void blockWithItem(DeferredBlock<?> deferredBlock) {
+        simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
+    }
+
+    private void lightBlockWithItem(DeferredBlock<?> deferredBlock) {
+        String name = BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath();
+        String texturePath = "block/light/" + name; // matches your texture folder layout
+        simpleBlockWithItem(deferredBlock.get(), models().cubeAll(name, modLoc(texturePath)));
+    }
+
+    private void glassLightBlockWithItem(DeferredBlock<?> deferredBlock) {
+        String name = BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath();
+        String texturePath = "block/glass/" + name; // matches your texture folder layout
+        simpleBlockWithItem(deferredBlock.get(), models().cubeAll(name, modLoc(texturePath)).renderType("minecraft:translucent"));
     }
 
     private void generateLayeredBlockStates() {

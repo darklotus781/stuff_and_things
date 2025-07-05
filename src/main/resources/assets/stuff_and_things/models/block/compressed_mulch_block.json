@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "stuff_and_things:block/mulch/compressed_mulch_block"
+  }
+}

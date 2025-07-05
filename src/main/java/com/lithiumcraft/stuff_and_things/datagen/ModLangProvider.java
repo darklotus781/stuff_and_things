@@ -15,14 +15,47 @@ public class ModLangProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
 //        add("block.stuff_and_things.grass_block_layers_block", "Layered Grass Block");
-        add("creativetab.stuff_and_things_layered_blocks", "Stuff and Things Layered Blocks");
-        add("creativetab.stuff_and_things_slabs", "Stuff and Things Slab Blocks");
+        add("creativetab.stuff_and_things.layered_blocks", "Stuff and Things Layered Blocks");
+        add("creativetab.stuff_and_things.slabs", "Stuff and Things Slab Blocks");
+        add("creativetab.stuff_and_things.lights", "Stuff and Things Light Blocks");
+        add("block.stuff_and_things.white_light_block", "White Light Block");
+        add("block.stuff_and_things.orange_light_block", "Orange Light Block");
+        add("block.stuff_and_things.magenta_light_block", "Magenta Light Block");
+        add("block.stuff_and_things.light_blue_light_block", "Light Blue Light Block");
+        add("block.stuff_and_things.yellow_light_block", "Yellow Light Block");
+        add("block.stuff_and_things.lime_light_block", "Lime Light Block");
+        add("block.stuff_and_things.pink_light_block", "Pink Light Block");
+        add("block.stuff_and_things.gray_light_block", "Gray Light Block");
+        add("block.stuff_and_things.light_gray_light_block", "Light Gray Light Block");
+        add("block.stuff_and_things.cyan_light_block", "Cyan Light Block");
+        add("block.stuff_and_things.purple_light_block", "Purple Light Block");
+        add("block.stuff_and_things.blue_light_block", "Blue Light Block");
+        add("block.stuff_and_things.brown_light_block", "Brown Light Block");
+        add("block.stuff_and_things.green_light_block", "Green Light Block");
+        add("block.stuff_and_things.red_light_block", "Red Light Block");
+        add("block.stuff_and_things.black_light_block", "Black Light Block");
+        add("block.stuff_and_things.white_glass_light_block", "White Glass Light Block");
+        add("block.stuff_and_things.orange_glass_light_block", "Orange Glass Light Block");
+        add("block.stuff_and_things.magenta_glass_light_block", "Magenta Glass Light Block");
+        add("block.stuff_and_things.light_blue_glass_light_block", "Light Blue Glass Light Block");
+        add("block.stuff_and_things.yellow_glass_light_block", "Yellow Glass Light Block");
+        add("block.stuff_and_things.lime_glass_light_block", "Lime Glass Light Block");
+        add("block.stuff_and_things.pink_glass_light_block", "Pink Glass Light Block");
+        add("block.stuff_and_things.gray_glass_light_block", "Gray Glass Light Block");
+        add("block.stuff_and_things.light_gray_glass_light_block", "Light Gray Glass Light Block");
+        add("block.stuff_and_things.cyan_glass_light_block", "Cyan Glass Light Block");
+        add("block.stuff_and_things.purple_glass_light_block", "Purple Glass Light Block");
+        add("block.stuff_and_things.blue_glass_light_block", "Blue Glass Light Block");
+        add("block.stuff_and_things.brown_glass_light_block", "Brown Glass Light Block");
+        add("block.stuff_and_things.green_glass_light_block", "Green Glass Light Block");
+        add("block.stuff_and_things.red_glass_light_block", "Red Glass Light Block");
+        add("block.stuff_and_things.black_glass_light_block", "Black Glass Light Block");
 
         // Dynamically add layered block names
-         LayeredBlocks.getAllBlocks().forEach(holder -> {
-             String name = holder.getId().getPath();
-             add("block." + StuffAndThings.MOD_ID + "." + name, formatDisplayName(name));
-         });
+        LayeredBlocks.getAllBlocks().forEach(holder -> {
+            String name = holder.getId().getPath();
+            add("block." + StuffAndThings.MOD_ID + "." + name, formatDisplayName(name));
+        });
 
         SlabBlocks.getSlabBlocks().forEach(holder -> {
             String name = holder.getId().getPath();

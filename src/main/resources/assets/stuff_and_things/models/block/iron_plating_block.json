@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "stuff_and_things:block/plating/iron_plating_block",
+    "side": "stuff_and_things:block/plating/iron_plating_block_side"
+  }
+}

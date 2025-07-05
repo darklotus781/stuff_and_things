@@ -17,9 +17,15 @@ public class ModTags {
         public static final TagKey<Block> TRANSLUCENT = createTag("render/translucent");
         public static final TagKey<Block> EMISSIVE = createTag("render/emissive");
         public static final TagKey<Block> CUTOUT = createTag("render/cutout");
+        public static final TagKey<Block> WRENCHABLE = createTag("create", "wrench_pickup");
+        public static final TagKey<Block> FRAMEABLE = createTag("framedblocks", "frameable");
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, name));
+        }
+
+        private static TagKey<Block> createTag(String namespace, String key) {
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(namespace, key));
         }
     }
 

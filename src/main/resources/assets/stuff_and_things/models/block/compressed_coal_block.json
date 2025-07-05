@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "stuff_and_things:block/coal/compressed_coal_block"
+  }
+}

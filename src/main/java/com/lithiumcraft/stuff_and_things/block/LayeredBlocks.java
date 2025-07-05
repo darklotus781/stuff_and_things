@@ -64,6 +64,7 @@ public class LayeredBlocks {
     public static final DeferredBlock<LayersBlock> MOSSY_COBBLESTONE_LAYERS_BLOCK = register("mossy_cobblestone_layers_block", Blocks.MOSSY_COBBLESTONE, false);
     public static final DeferredBlock<LayersBlock> MOSSY_STONE_BRICKS_LAYERS_BLOCK = register("mossy_stone_bricks_layers_block", Blocks.MOSSY_STONE_BRICKS, false);
     public static final DeferredBlock<LayersBlock> MUD_LAYERS_BLOCK = register("mud_layers_block", Blocks.MUD, false);
+    public static final DeferredBlock<LayersBlock> MUDDY_MANGROVE_ROOTS_LAYERS_BLOCK = register("muddy_mangrove_roots_layers_block", Blocks.MUDDY_MANGROVE_ROOTS, false);
     public static final DeferredBlock<LayersBlock> MYCELIUM_LAYERS_BLOCK = register("mycelium_layers_block", Blocks.MYCELIUM, false);
     public static final DeferredBlock<LayersBlock> NETHER_BRICKS_LAYERS_BLOCK = register("nether_bricks_layers_block", Blocks.NETHER_BRICKS, false);
     public static final DeferredBlock<LayersBlock> NETHERRACK_LAYERS_BLOCK = register("netherrack_layers_block", Blocks.NETHERRACK, false);
@@ -77,6 +78,8 @@ public class LayeredBlocks {
     public static final DeferredBlock<LayersBlock> RED_SAND_LAYERS_BLOCK = register("red_sand_layers_block", Blocks.RED_SAND, false);
     public static final DeferredBlock<LayersBlock> ROOTED_DIRT_LAYERS_BLOCK = register("rooted_dirt_layers_block", Blocks.ROOTED_DIRT, false);
     public static final DeferredBlock<LayersBlock> SAND_LAYERS_BLOCK = register("sand_layers_block", Blocks.SAND, false);
+    public static final DeferredBlock<LayersBlock> SMOOTH_RED_SANDSTONE_LAYERS_BLOCK = register("smooth_red_sandstone_layers_block", Blocks.SAND, false);
+    public static final DeferredBlock<LayersBlock> SMOOTH_SANDSTONE_LAYERS_BLOCK = register("smooth_sandstone_layers_block", Blocks.SAND, false);
     public static final DeferredBlock<LayersBlock> SPRUCE_PLANKS_LAYERS_BLOCK = register("spruce_planks_layers_block", Blocks.SPRUCE_PLANKS, false);
     public static final DeferredBlock<LayersBlock> STONE_LAYERS_BLOCK = register("stone_layers_block", Blocks.STONE, false);
     public static final DeferredBlock<LayersBlock> STONE_BRICKS_LAYERS_BLOCK = register("stone_bricks_layers_block", Blocks.STONE_BRICKS, false);

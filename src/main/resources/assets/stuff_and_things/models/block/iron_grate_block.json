@@ -1,0 +1,8 @@
+{
+  "render_type": "minecraft:translucent",
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "stuff_and_things:block/grate/iron_grate_block",
+    "side": "stuff_and_things:block/grate/iron_grate_block_side"
+  }
+}

@@ -9,6 +9,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -36,6 +37,11 @@ public class ModSlabBlockLootProvider extends BlockLootSubProvider {
             Block block = deferred.get();
             add(block, createSlabItemTable(block));
         });
+
+//        SlabBlocks.STAINED_GLASS_SLABS.values().forEach(holder -> {
+//            Block block = holder.get();
+//            this.add(block, createSilkTouchOnly(block, block.asItem()));
+//        });
     }
 
     protected LootTable.Builder createSlabItemTable(Block slab) {

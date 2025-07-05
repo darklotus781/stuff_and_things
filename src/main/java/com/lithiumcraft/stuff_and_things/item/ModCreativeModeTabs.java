@@ -31,7 +31,7 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> LAYERED_BLOCKS_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_layered_blocks",
             () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(LayeredBlocks.GRASS_BLOCK_LAYERS_BLOCK.get()))
-                    .title(Component.translatable("creativetab.stuff_and_things_layered_blocks"))
+                    .title(Component.translatable("creativetab.stuff_and_things.layered_blocks"))
                     .displayItems((parameters, output) -> {
                         LayeredBlocks.getAllBlocks().forEach(layered -> output.accept(layered.get()));
                     }).build());
@@ -39,18 +39,50 @@ public class ModCreativeModeTabs {
     public static final Supplier<CreativeModeTab> SLABS_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_slabs",
             () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(SlabBlocks.GRASS_BLOCK_SLAB.get())) // Replace with real slab block later
-                    .title(Component.translatable("creativetab.stuff_and_things_slabs"))
+                    .title(Component.translatable("creativetab.stuff_and_things.slabs"))
                     .displayItems((parameters, output) -> {
                         SlabBlocks.getSlabBlocks().forEach(slab -> output.accept(slab.get()));
                     }).build());
-//
-//    public static final Supplier<CreativeModeTab> MISC_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_misc",
-//            () -> CreativeModeTab.builder()
-//                    .icon(() -> new ItemStack(ModItems.PLACEHOLDER_ITEM.get())) // Replace with a real item
-//                    .title(Component.translatable("creativetab.stuff_and_things_misc"))
-//                    .displayItems((parameters, output) -> {
-//                        // TODO: Add misc items here
-//                    }).build());
+
+    public static final Supplier<CreativeModeTab> MISC_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_lights",
+            () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModBlocks.BLUE_LIGHT_BLOCK.get())) // Replace with a real item
+                    .title(Component.translatable("creativetab.stuff_and_things.lights"))
+                    .displayItems((parameters, output) -> {
+                        output.accept(ModBlocks.WHITE_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.ORANGE_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.MAGENTA_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.LIGHT_BLUE_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.YELLOW_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.LIME_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.PINK_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.GRAY_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.LIGHT_GRAY_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.CYAN_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.PURPLE_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.BLUE_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.BROWN_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.GREEN_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.RED_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.BLACK_LIGHT_BLOCK.get());
+
+                        output.accept(ModBlocks.WHITE_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.ORANGE_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.MAGENTA_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.LIGHT_BLUE_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.YELLOW_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.LIME_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.PINK_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.GRAY_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.LIGHT_GRAY_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.CYAN_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.PURPLE_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.BLUE_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.BROWN_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.GREEN_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.RED_GLASS_LIGHT_BLOCK.get());
+                        output.accept(ModBlocks.BLACK_GLASS_LIGHT_BLOCK.get());
+                    }).build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

@@ -51,6 +51,7 @@ public class SlabBlocks extends SlabBlock {
     public static final DeferredBlock<SlabBlock> ICE_SLAB = register("ice_slab", Blocks.ICE, true);
     public static final DeferredBlock<SlabBlock> MOSS_BLOCK_SLAB = register("moss_block_slab", Blocks.MOSS_BLOCK, true);
     public static final DeferredBlock<SlabBlock> MUD_SLAB = register("mud_slab", Blocks.MUD, true);
+    public static final DeferredBlock<SlabBlock> MUDDY_MANGROVE_ROOTS_SLAB = register("muddy_mangrove_roots_slab", Blocks.MUDDY_MANGROVE_ROOTS, true);
     public static final DeferredBlock<SlabBlock> MYCELIUM_SLAB = register("mycelium_slab", Blocks.MYCELIUM, true);
     public static final DeferredBlock<SlabBlock> NETHERRACK_SLAB = register("netherrack_slab", Blocks.NETHERRACK, true);
     public static final DeferredBlock<SlabBlock> PACKED_MUD_SLAB = register("packed_mud_slab", Blocks.PACKED_MUD, true);
@@ -60,6 +61,8 @@ public class SlabBlocks extends SlabBlock {
     public static final DeferredBlock<SlabBlock> RED_SAND_SLAB = register("red_sand_slab", Blocks.RED_SAND, true);
     public static final DeferredBlock<SlabBlock> ROOTED_DIRT_SLAB = register("rooted_dirt_slab", Blocks.ROOTED_DIRT, true);
     public static final DeferredBlock<SlabBlock> SAND_SLAB = register("sand_slab", Blocks.SAND, true);
+    public static final DeferredBlock<SlabBlock> SMOOTH_RED_SANDSTONE_SLAB = register("smooth_red_sandstone_slab", Blocks.SMOOTH_RED_SANDSTONE_SLAB, true);
+    public static final DeferredBlock<SlabBlock> SMOOTH_SANDSTONE_SLAB = register("smooth_sandstone_slab", Blocks.SMOOTH_SANDSTONE_SLAB, true);
     public static final DeferredBlock<SlabBlock> TUFF_SLAB = register("tuff_slab", Blocks.TUFF, true);
     public static final DeferredBlock<SlabBlock> WARPED_NYLIUM_SLAB = register("warped_nylium_slab", Blocks.WARPED_NYLIUM, true);
 

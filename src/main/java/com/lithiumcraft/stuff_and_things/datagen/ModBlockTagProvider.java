@@ -3,6 +3,7 @@ package com.lithiumcraft.stuff_and_things.datagen;
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
 import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
 import com.lithiumcraft.stuff_and_things.block.LayersBlock;
+import com.lithiumcraft.stuff_and_things.block.ModBlocks;
 import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
 import com.lithiumcraft.stuff_and_things.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -27,6 +28,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         // Static
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addTag(ModTags.Blocks.LIGHT_BLOCKS)
                 .add(LayeredBlocks.ANDESITE_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.BLACKSTONE_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.BLACKSTONE_LAYERS_BLOCK.get())
@@ -51,6 +53,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(LayeredBlocks.PACKED_MUD_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.PRISMARINE_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.RED_NETHER_BRICKS_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.SMOOTH_RED_SANDSTONE_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.SMOOTH_SANDSTONE_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.STONE_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.STONE_BRICKS_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.TUFF_LAYERS_BLOCK.get())
@@ -68,8 +72,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(SlabBlocks.OBSIDIAN_SLAB.get())
                 .add(SlabBlocks.PACKED_ICE_SLAB.get())
                 .add(SlabBlocks.PACKED_MUD_SLAB.get())
+                .add(SlabBlocks.SMOOTH_RED_SANDSTONE_SLAB.get())
+                .add(SlabBlocks.SMOOTH_SANDSTONE_SLAB.get())
                 .add(SlabBlocks.TUFF_SLAB.get())
-                .add(SlabBlocks.WARPED_NYLIUM_SLAB.get());
+                .add(SlabBlocks.WARPED_NYLIUM_SLAB.get())
+                .add(SlabBlocks.GLASS_SLAB.get())
+                .add(SlabBlocks.STAINED_GLASS_SLABS.values().stream()
+                        .map(DeferredHolder::get)
+                        .toArray(Block[]::new));
 
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(LayeredBlocks.ACACIA_PLANKS_LAYERS_BLOCK.get())
@@ -95,6 +105,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(LayeredBlocks.GRASS_BLOCK_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.GRAVEL_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.MUD_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.MUDDY_MANGROVE_ROOTS_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.MYCELIUM_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.PODZOL_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.RED_SAND_LAYERS_BLOCK.get())
@@ -107,6 +118,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(SlabBlocks.GRASS_BLOCK_SLAB.get())
                 .add(SlabBlocks.GRAVEL_SLAB.get())
                 .add(SlabBlocks.MUD_SLAB.get())
+                .add(SlabBlocks.MUDDY_MANGROVE_ROOTS_SLAB.get())
                 .add(SlabBlocks.MYCELIUM_SLAB.get())
                 .add(SlabBlocks.PACKED_MUD_SLAB.get())
                 .add(SlabBlocks.PODZOL_SLAB.get())
@@ -127,9 +139,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(LayeredBlocks.GLASS_LAYERS_BLOCK.value())
                 .add(LayeredBlocks.STAINED_GLASS_LAYERS.values().stream()
                         .map(DeferredHolder::get)
+                        .toArray(Block[]::new))
+                .add(SlabBlocks.GLASS_SLAB.get())
+                .add(SlabBlocks.STAINED_GLASS_SLABS.values().stream()
+                        .map(DeferredHolder::get)
                         .toArray(Block[]::new));
-
-
 
         for (DeferredHolder<Block, LayersBlock> block : LayeredBlocks.getAllBlocks()) {
             String blockName = block.getId().getPath();
@@ -206,5 +220,40 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                 .add(SlabBlocks.CRIMSON_NYLIUM_SLAB.get())
                 .add(SlabBlocks.WARPED_NYLIUM_SLAB.get());
+
+        this.tag(ModTags.Blocks.LIGHT_BLOCKS)
+                .add(ModBlocks.BLUE_LIGHT_BLOCK.get())
+                .add(ModBlocks.BLACK_LIGHT_BLOCK.get())
+                .add(ModBlocks.BROWN_LIGHT_BLOCK.get())
+                .add(ModBlocks.CYAN_LIGHT_BLOCK.get())
+                .add(ModBlocks.GRAY_LIGHT_BLOCK.get())
+                .add(ModBlocks.GREEN_LIGHT_BLOCK.get())
+                .add(ModBlocks.LIGHT_BLUE_LIGHT_BLOCK.get())
+                .add(ModBlocks.LIGHT_GRAY_LIGHT_BLOCK.get())
+                .add(ModBlocks.LIME_LIGHT_BLOCK.get())
+                .add(ModBlocks.MAGENTA_LIGHT_BLOCK.get())
+                .add(ModBlocks.ORANGE_LIGHT_BLOCK.get())
+                .add(ModBlocks.PINK_LIGHT_BLOCK.get())
+                .add(ModBlocks.PURPLE_LIGHT_BLOCK.get())
+                .add(ModBlocks.RED_LIGHT_BLOCK.get())
+                .add(ModBlocks.WHITE_LIGHT_BLOCK.get())
+                .add(ModBlocks.YELLOW_LIGHT_BLOCK.get())
+
+                .add(ModBlocks.BLUE_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.BLACK_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.BROWN_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.CYAN_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.GRAY_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.GREEN_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.LIGHT_BLUE_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.LIGHT_GRAY_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.LIME_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.MAGENTA_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.ORANGE_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.PINK_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.PURPLE_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.RED_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.WHITE_GLASS_LIGHT_BLOCK.get())
+                .add(ModBlocks.YELLOW_GLASS_LIGHT_BLOCK.get());
     }
 }
