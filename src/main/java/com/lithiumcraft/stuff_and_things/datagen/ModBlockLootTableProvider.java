@@ -33,39 +33,39 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropWhenSilkTouch(ModBlocks.WHITE_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.LIGHT_GRAY_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.GRAY_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.BLACK_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.BROWN_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.RED_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.ORANGE_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.YELLOW_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.LIME_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.GREEN_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.CYAN_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.LIGHT_BLUE_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.BLUE_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.PURPLE_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.MAGENTA_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.PINK_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.WHITE_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.LIGHT_GRAY_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.GRAY_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.BLACK_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.BROWN_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.RED_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.ORANGE_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.YELLOW_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.LIME_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.GREEN_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.CYAN_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.LIGHT_BLUE_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.BLUE_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.PURPLE_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.MAGENTA_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.PINK_LIGHT_BLOCK.get());
 
         dropWhenSilkTouchOrWrenched(ModBlocks.WHITE_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.LIGHT_GRAY_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.GRAY_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.BLACK_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.BROWN_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.RED_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.ORANGE_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.YELLOW_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.LIME_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.GREEN_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.CYAN_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.LIGHT_BLUE_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.BLUE_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.PURPLE_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.MAGENTA_GLASS_LIGHT_BLOCK.get());
-        dropWhenSilkTouch(ModBlocks.PINK_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.LIGHT_GRAY_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.GRAY_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.BLACK_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.BROWN_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.RED_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.ORANGE_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.YELLOW_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.LIME_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.GREEN_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.CYAN_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.LIGHT_BLUE_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.BLUE_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.PURPLE_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.MAGENTA_GLASS_LIGHT_BLOCK.get());
+        dropWhenSilkTouchOrWrenched(ModBlocks.PINK_GLASS_LIGHT_BLOCK.get());
 
         dropSelf(ModBlocks.THATCH_BLOCK.get());
         dropSelf(ModBlocks.AGED_THATCH_BLOCK.get());
@@ -99,17 +99,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void dropWhenSilkTouchOrWrenched(Block block) {
         this.add(block, createSilkTouchOrWrenchDispatchTable(block, LootItem.lootTableItem(Items.AIR).setWeight(0))); // No actual drop
     }
-
-
-//    protected LootTable.Builder createSilkTouchOnly(Block block, Item item) {
-//        return LootTable.lootTable()
-//                .withPool(LootPool.lootPool()
-//                        .when(this.hasSilkTouch())
-//                        .setRolls(ConstantValue.exactly(1.0F))
-//                        .add(LootItem.lootTableItem(item))
-//                );
-//    }
-
 
     @Override
     protected Iterable<Block> getKnownBlocks() {

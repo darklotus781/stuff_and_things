@@ -2,7 +2,9 @@ package com.lithiumcraft.stuff_and_things.datagen;
 
 import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
 import com.lithiumcraft.stuff_and_things.block.LayersBlock;
+import com.lithiumcraft.stuff_and_things.util.ModTags;
 import com.lithiumcraft.stuff_and_things.util.SpecialBlockTextureRegistry;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -13,9 +15,10 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.neoforge.registries.DeferredHolder;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +44,16 @@ public class ModLayeredBlockLootProvider extends BlockLootSubProvider {
                 .filter(holder -> SpecialBlockTextureRegistry.SILK_TOUCH_ONLY_PATHS.contains(holder.getId().getPath()))
                 .forEach(holder -> {
                     Block block = holder.get();
-                    add(block, createSilkTouchLayeredDrop(block, 8));
+                    add(block, createLayeredDropTableWithWrenchOrSilk(block, 8));
                 });
-
     }
 
-    private LootTable.Builder createSilkTouchLayeredDrop(Block block, int maxLayers) {
+    private LootItemCondition.Builder hasWrench() {
+        return MatchTool.toolMatches(ItemPredicate.Builder.item()
+                .of(ModTags.Items.WRENCHES));
+    }
+
+    private LootTable.Builder createLayeredDropTable(Block block, int maxLayers) {
         LootTable.Builder table = LootTable.lootTable();
 
         for (int i = 1; i <= maxLayers; i++) {
@@ -54,7 +61,6 @@ public class ModLayeredBlockLootProvider extends BlockLootSubProvider {
                     .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                             .setProperties(StatePropertiesPredicate.Builder.properties()
                                     .hasProperty(LayersBlock.LAYERS, i)))
-                    .when(this.hasSilkTouch())
                     .add(applyExplosionDecay(block,
                             LootItem.lootTableItem(block)
                                     .apply(SetItemCountFunction.setCount(ConstantValue.exactly(i)))))
@@ -66,7 +72,7 @@ public class ModLayeredBlockLootProvider extends BlockLootSubProvider {
         return table;
     }
 
-    private LootTable.Builder createLayeredDropTable(Block block, int maxLayers) {
+    private LootTable.Builder createLayeredDropTableWithWrenchOrSilk(Block block, int maxLayers) {
         LootTable.Builder table = LootTable.lootTable();
 
         for (int i = 1; i <= maxLayers; i++) {
@@ -74,6 +80,7 @@ public class ModLayeredBlockLootProvider extends BlockLootSubProvider {
                     .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                             .setProperties(StatePropertiesPredicate.Builder.properties()
                                     .hasProperty(LayersBlock.LAYERS, i)))
+                    .when(this.hasSilkTouch().or(this.hasWrench()))
                     .add(applyExplosionDecay(block,
                             LootItem.lootTableItem(block)
                                     .apply(SetItemCountFunction.setCount(ConstantValue.exactly(i)))))

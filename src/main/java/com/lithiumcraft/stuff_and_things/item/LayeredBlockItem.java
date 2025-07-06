@@ -63,11 +63,6 @@ public class LayeredBlockItem extends BlockItem {
         return super.useOn(context);
     }
 
-
-
-
-
-
     private void playPlaceSound(Level level, BlockPos pos, BlockState state, Player player) {
         SoundType sound = state.getSoundType();
         level.playSound(

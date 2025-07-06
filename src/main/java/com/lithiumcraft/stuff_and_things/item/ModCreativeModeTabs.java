@@ -112,8 +112,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.AGED_COMPRESSED_MULCH_BLOCK.get());
 //                        output.accept(ModBlocks.HOT_AGED_COMPRESSED_MULCH_BLOCK.get());
                         output.accept(ModBlocks.INDUSTRIAL_IRON_GRATE_BLOCK.get());
-                        output.accept(ModBlocks.IRON_PLATING_BLOCK.get());
                         output.accept(ModBlocks.ANDESITE_GRATE_BLOCK.get());
+                        output.accept(ModBlocks.IRON_GRATE_BLOCK.get());
                         output.accept(ModBlocks.IRON_PLATING_BLOCK.get());
                     }).build());
 

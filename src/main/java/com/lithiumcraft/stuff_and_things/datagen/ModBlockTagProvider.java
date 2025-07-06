@@ -306,6 +306,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.HOT_COAL_BLOCK.get());
 
         this.tag(ModTags.Blocks.WRENCHABLE)
+                .addTag(ModTags.Blocks.LAYER_BLOCKS)
+                .addTag(ModTags.Blocks.SLABS)
+                .addTag(ModTags.Blocks.LIGHT_BLOCKS)
+                .addTag(ModTags.Blocks.GRATES)
+                .addTag(ModTags.Blocks.PLATING);
+
+        this.tag(ModTags.Blocks.FRAMEABLE)
                 .addTag(ModTags.Blocks.LIGHT_BLOCKS)
                 .addTag(ModTags.Blocks.GRATES)
                 .addTag(ModTags.Blocks.PLATING);

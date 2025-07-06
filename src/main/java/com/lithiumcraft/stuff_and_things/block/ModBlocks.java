@@ -107,12 +107,12 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
     public static final DeferredBlock<Block> HOT_AGED_COMPRESSED_MULCH_BLOCK = registerBlock("hot_aged_compressed_mulch_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
-    public static final DeferredBlock<Block> IRON_GRATE_BLOCK = registerBlock("iron_grate_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).destroyTime(2.0F).noOcclusion()));
-    public static final DeferredBlock<Block> INDUSTRIAL_IRON_GRATE_BLOCK = registerBlock("industrial_iron_grate_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).destroyTime(2.0F).noOcclusion()));
-    public static final DeferredBlock<Block> ANDESITE_GRATE_BLOCK = registerBlock("andesite_grate_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).destroyTime(2.0F).noOcclusion()));
+    public static final DeferredBlock<GrateBlock> IRON_GRATE_BLOCK = registerBlock("iron_grate_block",
+            () -> new GrateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<GrateBlock> INDUSTRIAL_IRON_GRATE_BLOCK = registerBlock("industrial_iron_grate_block",
+            () -> new GrateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+    public static final DeferredBlock<GrateBlock> ANDESITE_GRATE_BLOCK = registerBlock("andesite_grate_block",
+            () -> new GrateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
     public static final DeferredBlock<Block> IRON_PLATING_BLOCK = registerBlock("iron_plating_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 

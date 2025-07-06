@@ -1,15 +1,19 @@
 package com.lithiumcraft.stuff_and_things.datagen;
 
+import com.google.gson.JsonObject;
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
 import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
 import com.lithiumcraft.stuff_and_things.block.LayersBlock;
 import com.lithiumcraft.stuff_and_things.block.ModBlocks;
 import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.GlowInkSacItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -92,10 +96,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             if (baseBlock == null || baseBlock.asItem().getDefaultInstance().isEmpty()) continue;
 
             // Define stonecutting recipe: 1 base block => 8 layered blocks
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(baseBlock), RecipeCategory.BUILDING_BLOCKS, layeredBlock, 8)
-                    .unlockedBy(getHasName(baseBlock), has(baseBlock))
-                    .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID,
-                            "stonecutting/" + fullName + "_from_" + baseName + "_block"));
+            stonecuttingRecipe(recipeOutput, fullName + "_from_" + baseName + "_block", baseBlock, layeredBlock, 8);
         }
 
         for (DeferredHolder<Block, SlabBlock> entry : SlabBlocks.getSlabBlocks()) {
@@ -108,10 +109,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
             if (baseBlock == null || baseBlock.asItem().getDefaultInstance().isEmpty()) continue;
 
-            SingleItemRecipeBuilder.stonecutting(Ingredient.of(baseBlock), RecipeCategory.BUILDING_BLOCKS, slabBlock, 2)
-                    .unlockedBy(getHasName(baseBlock), has(baseBlock))
-                    .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID,
-                            "stonecutting/" + fullName + "_from_" + baseName + "_block"));
+            stonecuttingRecipe(recipeOutput, fullName + "_from_" + baseName + "_block", baseBlock, slabBlock, 2);
+
         }
 
         for (ColoredLightRecipeData data : recipes) {
@@ -166,33 +165,85 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_hot_coal_block", has(ModBlocks.HOT_COAL_BLOCK.get()))
                 .save(recipeOutput, modLoc("blocks/compressed_coal_block"));
 
-        campfireCookingRecipe(recipeOutput, "hot_coal_block", Items.COAL_BLOCK, ModBlocks.HOT_COAL_BLOCK.get().asItem(), 0.1f, 600);
-        campfireCookingRecipe(recipeOutput, "hot_compressed_coal_block", ModBlocks.COMPRESSED_COAL_BLOCK.get().asItem(), ModBlocks.HOT_COMPRESSED_COAL_BLOCK.get().asItem(), 0.1f, 600);
+        stonecuttingRecipe(recipeOutput, "iron_plating_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.IRON_PLATING_BLOCK, 2);
+        stonecuttingRecipe(recipeOutput, "iron_grate_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.IRON_GRATE_BLOCK, 2);
+        stonecuttingRecipe(recipeOutput, "industrial_iron_grate_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.INDUSTRIAL_IRON_GRATE_BLOCK, 2);
+//        stonecuttingRecipe(recipeOutput, "andesite_grate_block_from_andesite_alloy", ingredientFromId("create", "andesite_alloy"), ModBlocks.ANDESITE_GRATE_BLOCK.get(), 2, "create");
+        stonecuttingRecipe(recipeOutput,
+                "andesite_grate_block_from_alloy_tag",
+                "c", // namespace
+                "ingots/andesite_alloy", // path
+                ModBlocks.ANDESITE_GRATE_BLOCK.get(),
+                2,
+                "andesite_alloy");
+
+
+//        campfireCookingRecipe(recipeOutput, "hot_coal_block", Items.COAL_BLOCK, ModBlocks.HOT_COAL_BLOCK.get().asItem(), 0.1f, 600);
+//        campfireCookingRecipe(recipeOutput, "hot_compressed_coal_block", ModBlocks.COMPRESSED_COAL_BLOCK.get().asItem(), ModBlocks.HOT_COMPRESSED_COAL_BLOCK.get().asItem(), 0.1f, 600);
     }
 
-    private void smeltingRecipe(RecipeOutput output, String name, ItemLike input, ItemLike result, float xp, int time) {
+    private void smeltingRecipe(RecipeOutput recipeOutput, String name, ItemLike input, ItemLike result, float xp, int time) {
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.MISC, result, xp, time)
                 .unlockedBy(getHasName(input), has(input))
-                .save(output, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "smelting/" + name));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "smelting/" + name));
     }
 
-    private void blastingRecipe(RecipeOutput output, String name, ItemLike input, ItemLike result, float xp, int time) {
+    private void blastingRecipe(RecipeOutput recipeOutput, String name, ItemLike input, ItemLike result, float xp, int time) {
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(input), RecipeCategory.MISC, result, xp, time)
                 .unlockedBy(getHasName(input), has(input))
-                .save(output, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "blasting/" + name));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "blasting/" + name));
     }
 
-    private void smokingRecipe(RecipeOutput output, String name, ItemLike input, ItemLike result, float xp, int time) {
+    private void smokingRecipe(RecipeOutput recipeOutput, String name, ItemLike input, ItemLike result, float xp, int time) {
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(input), RecipeCategory.MISC, result, xp, time)
                 .unlockedBy(getHasName(input), has(input))
-                .save(output, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "smoking/" + name));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "smoking/" + name));
     }
 
-    private void campfireCookingRecipe(RecipeOutput output, String name, ItemLike input, ItemLike result, float xp, int time) {
+    private void campfireCookingRecipe(RecipeOutput recipeOutput, String name, ItemLike input, ItemLike result, float xp, int time) {
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(input), RecipeCategory.MISC, result, xp, time)
                 .unlockedBy(getHasName(input), has(input))
-                .save(output, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "campfire/" + name));
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "campfire/" + name));
     }
+
+    private void stonecuttingRecipe(RecipeOutput recipeOutput, String name, ItemLike input, ItemLike result, int count) {
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, result, count)
+                .unlockedBy(getHasName(input), has(input))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "stonecutting/" + name));
+    }
+
+    private void stonecuttingRecipe(RecipeOutput recipeOutput, String name, String tagNamespace, String tagPath, ItemLike result, int count, String unlockName) {
+        TagKey<Item> tag = ItemTags.create(ResourceLocation.fromNamespaceAndPath(tagNamespace, tagPath));
+        Ingredient ingredient = Ingredient.of(tag);
+
+        SingleItemRecipeBuilder.stonecutting(ingredient, RecipeCategory.BUILDING_BLOCKS, result, count)
+                .unlockedBy("has_" + unlockName, has(tag))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "stonecutting/" + name));
+    }
+
+//    private void stonecuttingRecipe(
+//            RecipeOutput recipeOutput,
+//            String name,
+//            Ingredient input,
+//            ItemLike result,
+//            int count,
+//            String modDependency
+//    ) {
+//        SingleItemRecipeBuilder.stonecutting(input, RecipeCategory.BUILDING_BLOCKS, result, count)
+//                .save(
+//                        recipeOutput.withConditions(new ModLoadedCondition(modDependency)),
+//                        ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, "stonecutting/" + name)
+//                );
+//    }
+//
+//    private static Ingredient ingredientFromId(String namespace, String path) {
+//        JsonObject json = new JsonObject();
+//        json.addProperty("item", namespace + ":" + path);
+//        return Ingredient.CODEC.decode(JsonOps.INSTANCE, json)
+//                .result()
+//                .orElseThrow(() -> new IllegalArgumentException("Failed to parse Ingredient for " + namespace + ":" + path))
+//                .getFirst();
+//    }
 
     private static ResourceLocation modLoc(String path) {
         return ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, path);

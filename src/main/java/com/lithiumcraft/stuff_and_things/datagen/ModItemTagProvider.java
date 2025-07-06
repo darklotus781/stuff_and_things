@@ -29,5 +29,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
 //                .add(ModItems.ACTIVATOR_WAND.get());
         tag(ModTags.Items.WRENCHES)
                 .addOptional(ResourceLocation.fromNamespaceAndPath("create", "wrench"));
+
+        tag(ModTags.Items.ANDESITE_ALLOY_INGOTS)
+                .addOptional(ResourceLocation.fromNamespaceAndPath("create", "andesite_alloy"));
     }
 }

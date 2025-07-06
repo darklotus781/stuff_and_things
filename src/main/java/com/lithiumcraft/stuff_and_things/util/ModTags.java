@@ -34,11 +34,15 @@ public class ModTags {
     }
 
     public static class Items {
-//        public static final TagKey<Item> SKY_STONE_BLOCK = createTag("sky_stone_block");
         public static final TagKey<Item> WRENCHES = createTag("wrenches");
+        public static final TagKey<Item> ANDESITE_ALLOY_INGOTS = createTag("c", "ingots/andesite_alloy");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, name));
+        }
+
+        private static TagKey<Item> createTag(String namespace, String key) {
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(namespace, key));
         }
     }
 }

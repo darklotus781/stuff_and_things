@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "stuff_and_things:thatch_block"
+      "item": "stuff_and_things:old_thatch_block"
     },
     {
       "item": "minecraft:mud"

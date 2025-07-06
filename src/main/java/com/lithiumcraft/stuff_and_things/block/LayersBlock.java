@@ -2,40 +2,37 @@ package com.lithiumcraft.stuff_and_things.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.util.TriState;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
 
-public class LayersBlock extends Block {
+public class LayersBlock extends Block implements SimpleWaterloggedBlock {
     public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 8);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     private final Block fullBlock;
 
     public LayersBlock(Properties properties, Block fullBlock) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(LAYERS, 1));
+        this.registerDefaultState(this.defaultBlockState().setValue(LAYERS, 1).setValue(WATERLOGGED, false));
         this.fullBlock = fullBlock;
 
     }
@@ -94,7 +91,7 @@ public class LayersBlock extends Block {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(LAYERS);
+        builder.add(LAYERS, WATERLOGGED);
     }
 
     @Override
@@ -109,12 +106,22 @@ public class LayersBlock extends Block {
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState state = context.getLevel().getBlockState(context.getClickedPos());
-        if (state.is(this)) {
-            int layers = state.getValue(LAYERS);
-            return state.setValue(LAYERS, Math.min(7, layers + 1));
+        BlockPos pos = context.getClickedPos();
+        Level level = context.getLevel();
+        BlockState currentState = level.getBlockState(pos);
+        FluidState fluid = level.getFluidState(pos);
+
+        if (currentState.is(this)) {
+            int layers = currentState.getValue(LAYERS);
+            return currentState.setValue(LAYERS, Math.min(7, layers + 1));
         }
-        return super.getStateForPlacement(context);
+
+        // Check if the block is being placed in water
+        boolean waterlogged = fluid.getType() == Fluids.WATER;
+
+        return this.defaultBlockState()
+                .setValue(LAYERS, 1)
+                .setValue(WATERLOGGED, waterlogged);
     }
 
     @Override
@@ -146,6 +153,44 @@ public class LayersBlock extends Block {
 
     public Block getFullBlock() {
         return fullBlock;
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction dir, BlockState neighbor, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if (state.getValue(WATERLOGGED)) {
+            if (state.getValue(LAYERS) > 7) {
+                // Force clear water once full block
+                return state.setValue(WATERLOGGED, false);
+            }
+
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+
+        return super.updateShape(state, dir, neighbor, level, pos, neighborPos);
+    }
+
+    @Override
+    public boolean placeLiquid(LevelAccessor level, BlockPos pos, BlockState state, FluidState fluidState) {
+        if (!state.getValue(WATERLOGGED) && fluidState.getType() == Fluids.WATER) {
+            level.setBlock(pos, state.setValue(WATERLOGGED, true), 3);
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
+        if (state.getValue(LAYERS) > 7) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
