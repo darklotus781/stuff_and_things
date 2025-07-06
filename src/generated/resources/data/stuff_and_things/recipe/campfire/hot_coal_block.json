@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "minecraft:coal_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "stuff_and_things:hot_coal_block"
+  }
+}

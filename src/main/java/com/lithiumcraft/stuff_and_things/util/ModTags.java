@@ -19,6 +19,10 @@ public class ModTags {
         public static final TagKey<Block> CUTOUT = createTag("render/cutout");
         public static final TagKey<Block> WRENCHABLE = createTag("create", "wrench_pickup");
         public static final TagKey<Block> FRAMEABLE = createTag("framedblocks", "frameable");
+        public static final TagKey<Block> MULCH = createTag("mulch");
+        public static final TagKey<Block> COAL = createTag("coal");
+        public static final TagKey<Block> THATCH = createTag("thatch");
+        public static final TagKey<Block> PLATING = createTag("plating");
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, name));
@@ -31,6 +35,7 @@ public class ModTags {
 
     public static class Items {
 //        public static final TagKey<Item> SKY_STONE_BLOCK = createTag("sky_stone_block");
+        public static final TagKey<Item> WRENCHES = createTag("wrenches");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, name));

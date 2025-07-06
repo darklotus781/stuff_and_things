@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "stuff_and_things:waxed_aged_thatch_block"
+    },
+    {
+      "item": "create:experience_nugget"
+    }
+  ],
+  "result": {
+    "id": "stuff_and_things:old_thatch_block"
+  }
+}

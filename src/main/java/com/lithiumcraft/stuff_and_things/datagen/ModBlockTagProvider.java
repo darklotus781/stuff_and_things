@@ -96,7 +96,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.MINEABLE_WITH_HOE)
                 .add(LayeredBlocks.MOSS_BLOCK_LAYERS_BLOCK.get())
-                .add(SlabBlocks.MOSS_BLOCK_SLAB.get());
+
+                .add(SlabBlocks.MOSS_BLOCK_SLAB.get())
+
+                .add(SlabBlocks.MOSS_BLOCK_SLAB.get())
+                .add(ModBlocks.THATCH_BLOCK.get())
+                .add(ModBlocks.WAXED_THATCH_BLOCK.get())
+                .add(ModBlocks.AGED_THATCH_BLOCK.get())
+                .add(ModBlocks.WAXED_AGED_THATCH_BLOCK.get())
+                .add(ModBlocks.OLD_THATCH_BLOCK.get());
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(LayeredBlocks.CLAY_LAYERS_BLOCK.get())
@@ -124,7 +132,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(SlabBlocks.PODZOL_SLAB.get())
                 .add(SlabBlocks.RED_SAND_SLAB.get())
                 .add(SlabBlocks.ROOTED_DIRT_SLAB.get())
-                .add(SlabBlocks.SAND_SLAB.get());
+                .add(SlabBlocks.SAND_SLAB.get())
+
+                .add(ModBlocks.HOT_COAL_BLOCK.get())
+                .add(ModBlocks.COMPRESSED_COAL_BLOCK.get())
+                .add(ModBlocks.HOT_COMPRESSED_COAL_BLOCK.get())
+                .add(ModBlocks.MULCH_BLOCK.get())
+                .add(ModBlocks.COMPRESSED_MULCH_BLOCK.get())
+                .add(ModBlocks.AGED_COMPRESSED_MULCH_BLOCK.get())
+                .add(ModBlocks.HOT_AGED_COMPRESSED_MULCH_BLOCK.get());
 
         this.tag(BlockTags.NEEDS_STONE_TOOL);
 
@@ -255,5 +271,51 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.RED_GLASS_LIGHT_BLOCK.get())
                 .add(ModBlocks.WHITE_GLASS_LIGHT_BLOCK.get())
                 .add(ModBlocks.YELLOW_GLASS_LIGHT_BLOCK.get());
+
+        this.tag(ModTags.Blocks.MULCH)
+                .add(ModBlocks.MULCH_BLOCK.get())
+                .add(ModBlocks.COMPRESSED_MULCH_BLOCK.get())
+                .add(ModBlocks.AGED_COMPRESSED_MULCH_BLOCK.get())
+                .add(ModBlocks.HOT_AGED_COMPRESSED_MULCH_BLOCK.get());
+
+        this.tag(ModTags.Blocks.COAL)
+                .add(ModBlocks.HOT_COAL_BLOCK.get())
+                .add(ModBlocks.COMPRESSED_COAL_BLOCK.get())
+                .add(ModBlocks.HOT_COMPRESSED_COAL_BLOCK.get());
+
+        this.tag(ModTags.Blocks.THATCH)
+                .add(ModBlocks.THATCH_BLOCK.get())
+                .add(ModBlocks.WAXED_THATCH_BLOCK.get())
+                .add(ModBlocks.AGED_THATCH_BLOCK.get())
+                .add(ModBlocks.WAXED_AGED_THATCH_BLOCK.get())
+                .add(ModBlocks.OLD_THATCH_BLOCK.get());
+
+        this.tag(BlockTags.BAMBOO_PLANTABLE_ON)
+                .add(ModBlocks.MULCH_BLOCK.get())
+                .add(ModBlocks.COMPRESSED_MULCH_BLOCK.get())
+                .add(ModBlocks.AGED_COMPRESSED_MULCH_BLOCK.get());
+
+        this.tag(BlockTags.DEAD_BUSH_MAY_PLACE_ON)
+                .add(ModBlocks.MULCH_BLOCK.get())
+                .add(ModBlocks.COMPRESSED_MULCH_BLOCK.get())
+                .add(ModBlocks.AGED_COMPRESSED_MULCH_BLOCK.get());
+
+        this.tag(BlockTags.SNOW_LAYER_CANNOT_SURVIVE_ON)
+                .add(ModBlocks.HOT_AGED_COMPRESSED_MULCH_BLOCK.get())
+                .add(ModBlocks.HOT_COMPRESSED_COAL_BLOCK.get())
+                .add(ModBlocks.HOT_COAL_BLOCK.get());
+
+        this.tag(ModTags.Blocks.WRENCHABLE)
+                .addTag(ModTags.Blocks.LIGHT_BLOCKS)
+                .addTag(ModTags.Blocks.GRATES)
+                .addTag(ModTags.Blocks.PLATING);
+
+        this.tag(ModTags.Blocks.GRATES)
+                .add(ModBlocks.ANDESITE_GRATE_BLOCK.get())
+                .add(ModBlocks.INDUSTRIAL_IRON_GRATE_BLOCK.get())
+                .add(ModBlocks.IRON_GRATE_BLOCK.get());
+
+        this.tag(ModTags.Blocks.PLATING)
+                .add(ModBlocks.IRON_PLATING_BLOCK.get());
     }
 }

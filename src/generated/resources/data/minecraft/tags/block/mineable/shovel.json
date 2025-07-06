@@ -24,6 +24,13 @@
     "stuff_and_things:podzol_slab",
     "stuff_and_things:red_sand_slab",
     "stuff_and_things:rooted_dirt_slab",
-    "stuff_and_things:sand_slab"
+    "stuff_and_things:sand_slab",
+    "stuff_and_things:hot_coal_block",
+    "stuff_and_things:compressed_coal_block",
+    "stuff_and_things:hot_compressed_coal_block",
+    "stuff_and_things:mulch_block",
+    "stuff_and_things:compressed_mulch_block",
+    "stuff_and_things:aged_compressed_mulch_block",
+    "stuff_and_things:hot_aged_compressed_mulch_block"
   ]
 }

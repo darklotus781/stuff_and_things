@@ -1,0 +1,72 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "stuff_and_things:aged_compressed_mulch_block"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 95.0,
+      "id": "minecraft:coal"
+    },
+    {
+      "chance": 5.0,
+      "id": "stuff_and_things:mulch_block"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "stuff_and_things:aged_compressed_mulch_block"
+        },
+        {
+          "type": "fluid_stack",
+          "amount": 500,
+          "fluid": "minecraft:lava"
+        }
+      ],
+      "results": [
+        {
+          "id": "stuff_and_things:hot_aged_compressed_mulch_block"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "stuff_and_things:hot_aged_compressed_mulch_block"
+        }
+      ],
+      "results": [
+        {
+          "id": "stuff_and_things:hot_aged_compressed_mulch_block"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "stuff_and_things:hot_aged_compressed_mulch_block"
+        }
+      ],
+      "results": [
+        {
+          "id": "stuff_and_things:hot_aged_compressed_mulch_block"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "stuff_and_things:hot_aged_compressed_mulch_block"
+  }
+}

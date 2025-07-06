@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "stuff_and_things:thatch_block"
+    },
+    {
+      "item": "minecraft:mud"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "stuff_and_things:mulch_block"
+  }
+}

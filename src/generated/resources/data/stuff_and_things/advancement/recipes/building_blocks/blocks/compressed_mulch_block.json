@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mulch_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "stuff_and_things:compressed_mulch_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "stuff_and_things:blocks/compressed_mulch_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mulch_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "stuff_and_things:blocks/compressed_mulch_block"
+    ]
+  }
+}

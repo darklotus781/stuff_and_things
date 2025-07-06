@@ -1,0 +1,72 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "stuff_and_things:compressed_coal_block"
+  },
+  "loops": 5,
+  "results": [
+    {
+      "chance": 50.0,
+      "id": "stuff_and_things:rough_diamond"
+    },
+    {
+      "chance": 50.0,
+      "id": "minecraft:coal"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:filling",
+      "ingredients": [
+        {
+          "item": "stuff_and_things:compressed_coal_block"
+        },
+        {
+          "type": "fluid_stack",
+          "amount": 500,
+          "fluid": "minecraft:lava"
+        }
+      ],
+      "results": [
+        {
+          "id": "stuff_and_things:hot_compressed_coal_block"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "stuff_and_things:hot_compressed_coal_block"
+        }
+      ],
+      "results": [
+        {
+          "id": "stuff_and_things:hot_compressed_coal_block"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "stuff_and_things:hot_compressed_coal_block"
+        }
+      ],
+      "results": [
+        {
+          "id": "stuff_and_things:hot_compressed_coal_block"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "stuff_and_things:hot_compressed_coal_block"
+  }
+}

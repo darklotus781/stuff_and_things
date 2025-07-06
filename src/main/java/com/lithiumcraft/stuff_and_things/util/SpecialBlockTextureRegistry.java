@@ -1,7 +1,11 @@
 package com.lithiumcraft.stuff_and_things.util;
 
+import com.lithiumcraft.stuff_and_things.StuffAndThings;
+import net.minecraft.resources.ResourceLocation;
+
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class SpecialBlockTextureRegistry {
 
@@ -9,6 +13,31 @@ public class SpecialBlockTextureRegistry {
             "white", "orange", "magenta", "light_blue", "yellow", "lime",
             "pink", "gray", "light_gray", "cyan", "purple", "blue",
             "brown", "green", "red", "black"
+    );
+
+    // Blocks that should use Silk Touch only drops — either slabs or layers
+    public static final Set<String> SILK_TOUCH_ONLY_PATHS = Set.of(
+            "ice_layers_block", "packed_ice_layers_block", "blue_ice_layers_block",
+            "white_stained_glass_layers_block", "orange_stained_glass_layers_block",
+            "magenta_stained_glass_layers_block", "light_blue_stained_glass_layers_block",
+            "yellow_stained_glass_layers_block", "lime_stained_glass_layers_block",
+            "pink_stained_glass_layers_block", "gray_stained_glass_layers_block",
+            "light_gray_stained_glass_layers_block", "cyan_stained_glass_layers_block",
+            "purple_stained_glass_layers_block", "blue_stained_glass_layers_block",
+            "brown_stained_glass_layers_block", "green_stained_glass_layers_block",
+            "red_stained_glass_layers_block", "black_stained_glass_layers_block",
+            "glass_layers_block",
+
+            "ice_slab", "packed_ice_slab", "blue_ice_slab",
+            "white_stained_glass_slab", "orange_stained_glass_slab",
+            "magenta_stained_glass_slab", "light_blue_stained_glass_slab",
+            "yellow_stained_glass_slab", "lime_stained_glass_slab",
+            "pink_stained_glass_slab", "gray_stained_glass_slab",
+            "light_gray_stained_glass_slab", "cyan_stained_glass_slab",
+            "purple_stained_glass_slab", "blue_stained_glass_slab",
+            "brown_stained_glass_slab", "green_stained_glass_slab",
+            "red_stained_glass_slab", "black_stained_glass_slab",
+            "glass_slab"
     );
 
     public record TextureSet(String top, String bottom, String side, String overlay, String particle, boolean cutout,
@@ -74,5 +103,9 @@ public class SpecialBlockTextureRegistry {
 
     public static boolean hasCustomTextures(String baseName) {
         return SPECIAL_TEXTURES.containsKey(baseName);
+    }
+
+    private static ResourceLocation modLoc(String path) {
+        return ResourceLocation.fromNamespaceAndPath(StuffAndThings.MOD_ID, path);
     }
 }

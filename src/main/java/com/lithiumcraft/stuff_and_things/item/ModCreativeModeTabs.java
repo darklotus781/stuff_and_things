@@ -84,6 +84,39 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.BLACK_GLASS_LIGHT_BLOCK.get());
                     }).build());
 
+    public static final Supplier<CreativeModeTab> ITEMS_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_items",
+            () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModItems.ROUGH_DIAMOND.get()))
+                    .title(Component.translatable("creativetab.stuff_and_things.items"))
+                    .displayItems((parameters, output) -> {
+                        output.accept(ModItems.NETHERITE_DUST.get());
+//                        output.accept(ModItems.UNPROCESSED_NETHERITE_DUST.get());
+                        output.accept(ModItems.ROUGH_DIAMOND.get());
+                    }).build());
+
+    public static final Supplier<CreativeModeTab> BLOCKS_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_blocks",
+            () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModBlocks.THATCH_BLOCK.get()))
+                    .title(Component.translatable("creativetab.stuff_and_things.blocks"))
+                    .displayItems((parameters, output) -> {
+                        output.accept(ModBlocks.HOT_COAL_BLOCK.get());
+                        output.accept(ModBlocks.COMPRESSED_COAL_BLOCK.get());
+//                        output.accept(ModBlocks.HOT_COMPRESSED_COAL_BLOCK.get());
+                        output.accept(ModBlocks.THATCH_BLOCK.get());
+                        output.accept(ModBlocks.AGED_THATCH_BLOCK.get());
+                        output.accept(ModBlocks.WAXED_THATCH_BLOCK.get());
+                        output.accept(ModBlocks.WAXED_AGED_THATCH_BLOCK.get());
+                        output.accept(ModBlocks.OLD_THATCH_BLOCK.get());
+                        output.accept(ModBlocks.MULCH_BLOCK.get());
+                        output.accept(ModBlocks.COMPRESSED_MULCH_BLOCK.get());
+                        output.accept(ModBlocks.AGED_COMPRESSED_MULCH_BLOCK.get());
+//                        output.accept(ModBlocks.HOT_AGED_COMPRESSED_MULCH_BLOCK.get());
+                        output.accept(ModBlocks.INDUSTRIAL_IRON_GRATE_BLOCK.get());
+                        output.accept(ModBlocks.IRON_PLATING_BLOCK.get());
+                        output.accept(ModBlocks.ANDESITE_GRATE_BLOCK.get());
+                        output.accept(ModBlocks.IRON_PLATING_BLOCK.get());
+                    }).build());
+
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }

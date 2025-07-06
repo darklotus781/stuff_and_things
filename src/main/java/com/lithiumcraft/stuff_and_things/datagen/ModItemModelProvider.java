@@ -20,7 +20,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         LayeredBlocks.getAllItems().forEach(this::layeredBlockItem);
-//        LayeredBlocks.getStainedGlassItems().forEach(this::layeredBlockItem); // handles glass variants
         registerSlabBlockItems();
     }
 

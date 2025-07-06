@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "stuff_and_things:andesite_grate_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "stuff_and_things:blocks/andesite_grate_block"
+}

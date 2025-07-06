@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "stuff_and_things:block/aged_thatch_block",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "stuff_and_things:block/aged_thatch_block"
+    },
+    "axis=z": {
+      "model": "stuff_and_things:block/aged_thatch_block",
+      "x": 90
+    }
+  }
+}

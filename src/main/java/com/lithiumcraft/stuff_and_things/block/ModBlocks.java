@@ -4,10 +4,7 @@ import com.lithiumcraft.stuff_and_things.StuffAndThings;
 import com.lithiumcraft.stuff_and_things.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.TransparentBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -85,6 +82,39 @@ public class ModBlocks {
             () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).sound(SoundType.GLASS).lightLevel(s -> 15)));
     public static final DeferredBlock<Block> YELLOW_GLASS_LIGHT_BLOCK = registerBlock("yellow_glass_light_block",
             () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).sound(SoundType.GLASS).lightLevel(s -> 15)));
+
+    public static final DeferredBlock<Block> HOT_COAL_BLOCK = registerBlock("hot_coal_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_BLOCK)));
+    public static final DeferredBlock<Block> COMPRESSED_COAL_BLOCK = registerBlock("compressed_coal_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_BLOCK)));
+    public static final DeferredBlock<Block> HOT_COMPRESSED_COAL_BLOCK = registerBlock("hot_compressed_coal_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_BLOCK)));
+    public static final DeferredBlock<Block> OLD_THATCH_BLOCK = registerBlock("old_thatch_block",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final DeferredBlock<WaxedThatchBlock> WAXED_THATCH_BLOCK = registerBlock("waxed_thatch_block",
+            () -> new WaxedThatchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final DeferredBlock<WaxedAgedThatchBlock> WAXED_AGED_THATCH_BLOCK = registerBlock("waxed_aged_thatch_block",
+            () -> new WaxedAgedThatchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK)));
+    public static final DeferredBlock<ThatchBlock> THATCH_BLOCK = registerBlock("thatch_block",
+            () -> new ThatchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK).randomTicks()));
+    public static final DeferredBlock<AgedThatchBlock> AGED_THATCH_BLOCK = registerBlock("aged_thatch_block",
+            () -> new AgedThatchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK).randomTicks()));
+    public static final DeferredBlock<Block> MULCH_BLOCK = registerBlock("mulch_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
+    public static final DeferredBlock<Block> COMPRESSED_MULCH_BLOCK = registerBlock("compressed_mulch_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
+    public static final DeferredBlock<Block> AGED_COMPRESSED_MULCH_BLOCK = registerBlock("aged_compressed_mulch_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
+    public static final DeferredBlock<Block> HOT_AGED_COMPRESSED_MULCH_BLOCK = registerBlock("hot_aged_compressed_mulch_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUD)));
+    public static final DeferredBlock<Block> IRON_GRATE_BLOCK = registerBlock("iron_grate_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).destroyTime(2.0F).noOcclusion()));
+    public static final DeferredBlock<Block> INDUSTRIAL_IRON_GRATE_BLOCK = registerBlock("industrial_iron_grate_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).destroyTime(2.0F).noOcclusion()));
+    public static final DeferredBlock<Block> ANDESITE_GRATE_BLOCK = registerBlock("andesite_grate_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).destroyTime(2.0F).noOcclusion()));
+    public static final DeferredBlock<Block> IRON_PLATING_BLOCK = registerBlock("iron_plating_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "stuff_and_things:block/iron_plating_block"
+    }
+  }
+}

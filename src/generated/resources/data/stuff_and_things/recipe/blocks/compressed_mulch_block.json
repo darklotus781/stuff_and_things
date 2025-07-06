@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "stuff_and_things:mulch_block"
+    },
+    {
+      "item": "stuff_and_things:mulch_block"
+    },
+    {
+      "item": "stuff_and_things:mulch_block"
+    },
+    {
+      "item": "stuff_and_things:mulch_block"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "stuff_and_things:compressed_mulch_block"
+  }
+}
