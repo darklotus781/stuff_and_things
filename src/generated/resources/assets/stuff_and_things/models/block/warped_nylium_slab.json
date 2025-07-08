@@ -2,6 +2,7 @@
   "parent": "stuff_and_things:block/slab",
   "textures": {
     "bottom": "minecraft:block/netherrack",
+    "particle": "minecraft:block/dirt",
     "side": "minecraft:block/warped_nylium_side",
     "top": "minecraft:block/warped_nylium"
   }

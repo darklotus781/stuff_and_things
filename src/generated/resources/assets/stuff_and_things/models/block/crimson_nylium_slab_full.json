@@ -2,6 +2,7 @@
   "parent": "stuff_and_things:block/slab_full",
   "textures": {
     "bottom": "minecraft:block/netherrack",
+    "particle": "minecraft:block/dirt",
     "side": "minecraft:block/crimson_nylium_side",
     "top": "minecraft:block/crimson_nylium"
   }

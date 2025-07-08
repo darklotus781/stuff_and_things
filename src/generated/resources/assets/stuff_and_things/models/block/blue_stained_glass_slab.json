@@ -2,6 +2,7 @@
   "parent": "stuff_and_things:block/slab_translucent",
   "textures": {
     "bottom": "minecraft:block/blue_stained_glass",
+    "particle": "minecraft:block/blue_stained_glass",
     "side": "minecraft:block/blue_stained_glass",
     "top": "minecraft:block/blue_stained_glass"
   }

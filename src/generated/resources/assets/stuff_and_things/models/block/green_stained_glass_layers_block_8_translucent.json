@@ -1,7 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "minecraft:block/green_stained_glass",
-    "particle": "minecraft:block/green_stained_glass"
+    "all": "minecraft:block/green_stained_glass"
   }
 }

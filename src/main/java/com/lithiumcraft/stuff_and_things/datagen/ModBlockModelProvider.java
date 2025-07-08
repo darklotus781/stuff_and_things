@@ -29,6 +29,7 @@ public class ModBlockModelProvider extends BlockModelProvider {
         generateSlabBlockModels(SlabBlocks.getSlabBlocks());
     }
 
+
     private void generateLayeredBlockModels(Iterable<DeferredBlock<LayersBlock>> blocks) {
         for (DeferredHolder<Block, ?> blockHolder : blocks) {
             String blockName = blockHolder.getId().getPath(); // e.g., grass_block_layers_block
@@ -78,14 +79,30 @@ public class ModBlockModelProvider extends BlockModelProvider {
                 }
             }
             String modelName = baseName + "_layers_block_8" + suffix;
-            BlockModelBuilder builder = cubeAll(
-                    modelName,
-                    safeResource(textures != null ? textures.top() : "minecraft:block/" + baseName)
-            );
 
-            if (textures != null && textures.particle() != null && !textures.particle().isBlank()) {
-                builder.texture("particle", textures.particle());
+            if (textures != null && textures.useCutout()) {
+                // Use the base full block as parent — already textured correctly
+                getBuilder(modelName)
+                        .parent(new ModelFile.UncheckedModelFile("minecraft:block/" + baseName));
+                continue;
             }
+
+            // Non-cutout fallback: cube or cube_all
+            if (textures != null && textures.hasIndividualFaces()) {
+                getBuilder(modelName)
+                        .parent(new ModelFile.UncheckedModelFile("minecraft:block/cube"))
+                        .texture("top", textures.top())
+                        .texture("bottom", textures.bottom())
+                        .texture("side", textures.side())
+                        .texture("particle", textures.particle() != null && !textures.particle().isBlank()
+                                ? textures.particle()
+                                : textures.top());
+            } else {
+                cubeAll(modelName,
+                        safeResource(textures != null ? textures.top() : "minecraft:block/" + baseName));
+            }
+
+            continue;
         }
     }
 
@@ -124,13 +141,16 @@ public class ModBlockModelProvider extends BlockModelProvider {
             if (textures != null) {
                 slabBuilder.texture("bottom", textures.bottom())
                         .texture("top", textures.top())
-                        .texture("side", textures.side());
+                        .texture("side", textures.side())
+                        .texture("particle", textures.particle());
                 slabTopBuilder.texture("bottom", textures.bottom())
                         .texture("top", textures.top())
-                        .texture("side", textures.side());
+                        .texture("side", textures.side())
+                        .texture("particle", textures.particle());
                 slabFullBuilder.texture("bottom", textures.bottom())
                         .texture("top", textures.top())
-                        .texture("side", textures.side());
+                        .texture("side", textures.side())
+                        .texture("particle", textures.particle());
             } else {
                 String uniform = "minecraft:block/" + baseName;
                 slabBuilder.texture("bottom", uniform)
@@ -144,15 +164,5 @@ public class ModBlockModelProvider extends BlockModelProvider {
                         .texture("side", uniform);
             }
         }
-    }
-
-    private String getTextureOrDefault(SpecialBlockTextureRegistry.TextureSet textures, String baseName, String type) {
-        if (textures == null) return "minecraft:block/" + baseName;
-        return switch (type) {
-            case "top" -> textures.top();
-            case "bottom" -> textures.bottom();
-            case "side" -> textures.side();
-            default -> "minecraft:block/" + baseName;
-        };
     }
 }

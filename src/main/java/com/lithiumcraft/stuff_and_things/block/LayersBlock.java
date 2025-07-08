@@ -20,6 +20,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
@@ -54,10 +55,19 @@ public class LayersBlock extends Block implements SimpleWaterloggedBlock {
         return RenderShape.MODEL;
     }
 
+//    @Override
+//    public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
+//        int layers = state.getValue(LAYERS);
+//        return Block.box(0.0, 0.0, 0.0, 16.0, layers * 2.0, 16.0);
+//    }
+
     @Override
     public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
-        int layers = state.getValue(LAYERS);
-        return Block.box(0.0, 0.0, 0.0, 16.0, layers * 2.0, 16.0);
+        if (state.getValue(LAYERS) == 8) {
+            return getFullBlock().defaultBlockState().getBlockSupportShape(level, pos);
+        } else {
+            return Shapes.empty();
+        }
     }
 
     @Override

@@ -2,20 +2,21 @@ package com.lithiumcraft.stuff_and_things.block;
 
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
 import com.lithiumcraft.stuff_and_things.item.ModItems;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS =
-            DeferredRegister.createBlocks(StuffAndThings.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(StuffAndThings.MOD_ID);
 
     public static final DeferredBlock<Block> BLUE_LIGHT_BLOCK = registerBlock("blue_light_block",
             () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLOWSTONE).sound(SoundType.GLASS).lightLevel(s -> 15)));
@@ -129,5 +130,4 @@ public class ModBlocks {
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
-
 }

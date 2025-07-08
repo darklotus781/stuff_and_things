@@ -1,7 +1,9 @@
 package com.lithiumcraft.stuff_and_things.events;
 
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
+import com.lithiumcraft.stuff_and_things.block.LayersBlock;
 import com.lithiumcraft.stuff_and_things.block.ModBlocks;
+import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -16,12 +18,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
 @EventBusSubscriber(modid = StuffAndThings.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.DEDICATED_SERVER)
 public class ModServerEvents {
@@ -107,7 +113,5 @@ public class ModServerEvents {
                 event.setCancellationResult(InteractionResult.SUCCESS);
             }
         }
-
     }
-
 }

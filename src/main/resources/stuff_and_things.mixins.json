@@ -1,0 +1,10 @@
+{
+  "required": false,
+  "package": "com.lithiumcraft.stuff_and_things.mixin",
+  "mixins": [
+    "BushBlockMixin",
+    "MushroomBlockMixin"
+  ],
+  "client": [],
+  "server": []
+}

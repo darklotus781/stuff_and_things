@@ -125,7 +125,7 @@ public class SlabBlocks extends SlabBlock {
         return switch (type) {
             case DOUBLE -> Shapes.block();
             case TOP -> Block.box(0, 8, 0, 16, 16, 16); // normal top slab shape
-            case BOTTOM -> Block.box(0, 0, 0, 16, 7.99, 16); // not full height, blocks `isFaceSturdy`
+            case BOTTOM -> Block.box(0, 0, 0, 16, 8, 16); // not full height, blocks `isFaceSturdy`
         };
     }
 

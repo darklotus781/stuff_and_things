@@ -1,7 +1,3 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "minecraft:block/podzol_top",
-    "particle": "minecraft:block/dirt"
-  }
+  "parent": "minecraft:block/podzol"
 }

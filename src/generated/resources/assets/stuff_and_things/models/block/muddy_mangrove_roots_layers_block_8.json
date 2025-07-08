@@ -1,7 +1,9 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "minecraft:block/muddy_mangrove_roots_top",
-    "particle": "minecraft:block/muddy_mangrove_roots_top"
+    "bottom": "minecraft:block/muddy_mangrove_roots_top",
+    "particle": "minecraft:block/muddy_mangrove_roots_top",
+    "side": "minecraft:block/muddy_mangrove_roots_side",
+    "top": "minecraft:block/muddy_mangrove_roots_top"
   }
 }

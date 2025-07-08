@@ -2,6 +2,7 @@
   "parent": "stuff_and_things:block/slab_full_translucent",
   "textures": {
     "bottom": "minecraft:block/lime_stained_glass",
+    "particle": "minecraft:block/lime_stained_glass",
     "side": "minecraft:block/lime_stained_glass",
     "top": "minecraft:block/lime_stained_glass"
   }

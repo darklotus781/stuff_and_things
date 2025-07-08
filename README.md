@@ -8,7 +8,7 @@ Shift while breaking a layered block and only the top layer will break, without 
 That's right, Layered Blocks are here, and for 1.21.1 Minecraft.  Missing a block, let us know and we'll add it!    
 
 **Slab Blocks**  
-Vanilla Minecraft is missing slab variants of many blocks, so we've introduced our own.  Gras, Dirt, Obsidian, Netherrack and more.  
+Vanilla Minecraft is missing slab variants of many blocks, so we've introduced our own.  Grass, Dirt, Obsidian, Netherrack and more.  
 These work like normal slabs and even blocks like Grass and Dirt can have plants on them even if it's the top slab only!  
 
 **Light Blocks & Glass Light Blocks**  
@@ -33,7 +33,7 @@ Create a Netherite factory by creating Netherite Dust from Obsidian Powder and C
 - Cobblestone: Create lag friendly cobblestone by mixing Lava and Water  
 - Magma Blocks: Create Magma Blocks using a Create Mod Sequenced Assembly featuring Lava and Presses  
 
-## Sequenced Assembly Recipes for Create  
+## Sequenced Assembly Recipes for Create (optional)  
 **Renewable Coal**  
 Step 1: Create Thatch from 9 dead bushes  
 Step 2: Place Thatch in the world and wait for it to age into Aged Thatch, then into Old Thatch (or deploy Create Experience Nuggets to manually age them!)  

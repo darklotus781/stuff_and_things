@@ -2,6 +2,7 @@
   "parent": "stuff_and_things:block/slab_full_translucent",
   "textures": {
     "bottom": "minecraft:block/glass",
+    "particle": "minecraft:block/glass",
     "side": "minecraft:block/glass",
     "top": "minecraft:block/glass"
   }

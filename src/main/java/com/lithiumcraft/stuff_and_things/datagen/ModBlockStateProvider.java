@@ -20,7 +20,6 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Map;
-import java.util.Set;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -86,12 +85,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void generateLayeredBlockStates() {
         for (DeferredHolder<Block, LayersBlock> block : LayeredBlocks.getAllBlocks()) {
             createLayeredBlockState(block);
-        }
-    }
-
-    private void generateLayeredBlockStates(Map<String, DeferredBlock<LayersBlock>> blocks) {
-        for (Map.Entry<String, DeferredBlock<LayersBlock>> entry : blocks.entrySet()) {
-            createLayeredBlockState(entry.getValue());
         }
     }
 

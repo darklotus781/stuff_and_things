@@ -40,14 +40,17 @@ public class SpecialBlockTextureRegistry {
             "glass_slab"
     );
 
-    public record TextureSet(String top, String bottom, String side, String overlay, String particle, boolean cutout,
-                             boolean translucent) {
+    public record TextureSet(String top, String bottom, String side, String overlay, String particle, boolean cutout, boolean translucent) {
         public boolean useCutout() {
             return cutout;
         }
 
         public boolean useTranslucent() {
             return translucent;
+        }
+
+        public boolean hasIndividualFaces() {
+            return top() != null && !top().equals(side()) && bottom() != null && !bottom().equals(side());
         }
     }
 

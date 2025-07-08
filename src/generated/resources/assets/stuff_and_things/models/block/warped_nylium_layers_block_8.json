@@ -1,7 +1,9 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "minecraft:block/warped_nylium",
-    "particle": "minecraft:block/dirt"
+    "bottom": "minecraft:block/netherrack",
+    "particle": "minecraft:block/dirt",
+    "side": "minecraft:block/warped_nylium_side",
+    "top": "minecraft:block/warped_nylium"
   }
 }
