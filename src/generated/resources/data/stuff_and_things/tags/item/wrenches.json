@@ -1,5 +1,6 @@
 {
   "values": [
+    "stuff_and_things:chisel",
     {
       "id": "create:wrench",
       "required": false

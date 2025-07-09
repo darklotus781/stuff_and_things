@@ -72,9 +72,12 @@ public class ModLangProvider extends LanguageProvider {
         add("block.stuff_and_things.iron_grate_block", "Iron Grate Block");
         add("block.stuff_and_things.iron_plating_block", "Block of Iron Plating");
 
+        add("item.stuff_and_things.chisel", "Chisel");
         add("item.stuff_and_things.netherite_dust", "Netherite Dust");
         add("item.stuff_and_things.unprocessed_netherite_dust", "Unprocessed Netherite Dust");
         add("item.stuff_and_things.rough_diamond", "Rough Diamond");
+
+        add("tooltip.stuff_and_things.chisel", "A tool for removing Layers and Slabs");
 
         // Dynamically add layered block names
         LayeredBlocks.getAllBlocks().forEach(holder -> {

@@ -332,6 +332,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .addTag(ModTags.Blocks.GRATES)
                 .addTag(ModTags.Blocks.PLATING);
 
+        this.tag(ModTags.Blocks.CREATE_WRENCH_PICKUP)
+                .addTag(ModTags.Blocks.WRENCHABLE);
+
         this.tag(ModTags.Blocks.FRAMEABLE)
                 .addTag(ModTags.Blocks.LIGHT_BLOCKS)
                 .addTag(ModTags.Blocks.GRATES)

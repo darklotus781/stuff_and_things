@@ -3,6 +3,7 @@ package com.lithiumcraft.stuff_and_things;
 import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
 import com.lithiumcraft.stuff_and_things.block.ModBlocks;
 import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
+import com.lithiumcraft.stuff_and_things.block.StairBlocks;
 import com.lithiumcraft.stuff_and_things.item.ModCreativeModeTabs;
 import com.lithiumcraft.stuff_and_things.item.ModItems;
 import com.mojang.logging.LogUtils;
@@ -23,6 +24,7 @@ public class StuffAndThings {
         ModBlocks.register(modEventBus);
         LayeredBlocks.register(modEventBus);
         SlabBlocks.register(modEventBus);
+        StairBlocks.register(modEventBus);
 
         ModItems.register(modEventBus);
 

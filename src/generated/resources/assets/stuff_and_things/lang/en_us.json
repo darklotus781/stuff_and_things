@@ -167,7 +167,9 @@
   "creativetab.stuff_and_things.layered_blocks": "Stuff and Things Layered Blocks",
   "creativetab.stuff_and_things.lights": "Stuff and Things Light Blocks",
   "creativetab.stuff_and_things.slabs": "Stuff and Things Slab Blocks",
+  "item.stuff_and_things.chisel": "Chisel",
   "item.stuff_and_things.netherite_dust": "Netherite Dust",
   "item.stuff_and_things.rough_diamond": "Rough Diamond",
-  "item.stuff_and_things.unprocessed_netherite_dust": "Unprocessed Netherite Dust"
+  "item.stuff_and_things.unprocessed_netherite_dust": "Unprocessed Netherite Dust",
+  "tooltip.stuff_and_things.chisel": "A tool for removing Layers and Slabs"
 }

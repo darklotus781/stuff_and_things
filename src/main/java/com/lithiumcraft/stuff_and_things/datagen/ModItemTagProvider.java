@@ -28,6 +28,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 //        tag(ItemTags.DURABILITY_ENCHANTABLE)
 //                .add(ModItems.ACTIVATOR_WAND.get());
         tag(ModTags.Items.WRENCHES)
+                .add(ModItems.CHISEL.get())
                 .addOptional(ResourceLocation.fromNamespaceAndPath("create", "wrench"));
 
         tag(ModTags.Items.ANDESITE_ALLOY_INGOTS)

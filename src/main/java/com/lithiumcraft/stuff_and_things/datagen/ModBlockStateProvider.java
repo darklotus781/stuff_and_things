@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.neoforged.neoforge.client.model.generators.*;
@@ -24,6 +25,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         generateLayeredBlockStates();
         generateSlabBlockStates();
+        generateStairBlockStates();
         generatePathLayerBlockStates();
         generateFarmLayerBlockStates();
         generatePathSlabBlockStates();
@@ -172,6 +174,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .addModel();
     }
 
+    private void generateStairBlockStates() {
+        for (DeferredBlock<StairBlock> stair : StairBlocks.getStairBlocks()) {
+            String stairName = stair.getId().getPath();
+            String baseName = stairName.replace("_stairs", "");
+
+            if (SpecialBlockTextureRegistry.hasCustomTextures(baseName)) {
+                createSlabBlockState(baseName, stair.get());
+            } else {
+                stairsBlock(stair.get(), baseName, mcLoc("block/" + baseName));
+            }
+        }
+    }
 
     private void generateSlabBlockStates() {
         for (DeferredBlock<SlabBlock> slab : SlabBlocks.getSlabBlocks()) {

@@ -1,10 +1,8 @@
 package com.lithiumcraft.stuff_and_things.datagen;
 
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
-import com.lithiumcraft.stuff_and_things.block.FarmLayerBlock;
-import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
-import com.lithiumcraft.stuff_and_things.block.PathLayerBlock;
-import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
+import com.lithiumcraft.stuff_and_things.block.*;
+import com.lithiumcraft.stuff_and_things.item.ModItems;
 import com.lithiumcraft.stuff_and_things.util.SpecialBlockTextureRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -25,6 +23,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         LayeredBlocks.getAllItems().forEach(this::layeredBlockItem);
         SlabBlocks.getAllItems().forEach(this::slabBlockItem);
+        StairBlocks.getAllItems().forEach(this::simpleBlockItem);
+        simpleItem(ModItems.CHISEL);
 //        registerSlabBlockItems();
 //        registerPathLayerBlockItems();
 //        registerFarmLayerBlockItems();
@@ -65,7 +65,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 
     private void slabBlockItem(DeferredHolder<Item, ?> item) {
-        String name = item.getId().getPath(); // e.g., grass_block_layers_block
+        String name = item.getId().getPath();
+
+        withExistingParent(name, modLoc("block/" + name));
+    }
+
+    private void stairBlockItem(DeferredHolder<Item, ?> item) {
+        String name = item.getId().getPath();
 
         withExistingParent(name, modLoc("block/" + name));
     }

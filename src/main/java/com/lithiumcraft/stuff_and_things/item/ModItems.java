@@ -22,6 +22,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ROUGH_DIAMOND = ITEMS.register("rough_diamond",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<ChiselItem> CHISEL = ITEMS.register("chisel",
+            () -> new ChiselItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

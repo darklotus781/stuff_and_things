@@ -91,6 +91,7 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(ModItems.ROUGH_DIAMOND.get()))
                     .title(Component.translatable("creativetab.stuff_and_things.items"))
                     .displayItems((parameters, output) -> {
+                        output.accept(ModItems.CHISEL.get());
                         output.accept(ModItems.NETHERITE_DUST.get());
 //                        output.accept(ModItems.UNPROCESSED_NETHERITE_DUST.get());
                         output.accept(ModItems.ROUGH_DIAMOND.get());

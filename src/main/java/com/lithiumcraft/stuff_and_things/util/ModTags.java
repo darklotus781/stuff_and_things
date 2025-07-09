@@ -17,7 +17,8 @@ public class ModTags {
         public static final TagKey<Block> TRANSLUCENT = createTag("render/translucent");
         public static final TagKey<Block> EMISSIVE = createTag("render/emissive");
         public static final TagKey<Block> CUTOUT = createTag("render/cutout");
-        public static final TagKey<Block> WRENCHABLE = createTag("create", "wrench_pickup");
+        public static final TagKey<Block> CREATE_WRENCH_PICKUP = createTag("create", "wrench_pickup");
+        public static final TagKey<Block> WRENCHABLE = createTag("wrench_pickup");
         public static final TagKey<Block> FRAMEABLE = createTag("framedblocks", "frameable");
         public static final TagKey<Block> MULCH = createTag("mulch");
         public static final TagKey<Block> COAL = createTag("coal");

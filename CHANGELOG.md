@@ -1,5 +1,7 @@
+## 1.0.6
+
 ## 1.0.5
-- Introduced Dirt Path and FarmLand Layers 
+- Introduced Dirt Path and FarmLand Layers
 - Introduced Dirt Path and Farmland Slabs
 - Enabled Hydration of FarmLand if Waterlogged
   - This will enable a layered farmland to be placed in the middle of a field and water logged.
