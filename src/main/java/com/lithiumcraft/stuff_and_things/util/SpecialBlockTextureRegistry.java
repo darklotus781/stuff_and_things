@@ -37,7 +37,8 @@ public class SpecialBlockTextureRegistry {
             "purple_stained_glass_slab", "blue_stained_glass_slab",
             "brown_stained_glass_slab", "green_stained_glass_slab",
             "red_stained_glass_slab", "black_stained_glass_slab",
-            "glass_slab"
+            "glass_slab", "farmland_layers_block", "farmland_slab", "dirt_path_layers_block",
+            "dirt_path_slab"
     );
 
     public record TextureSet(String top, String bottom, String side, String overlay, String particle, boolean cutout, boolean translucent) {
@@ -54,6 +55,9 @@ public class SpecialBlockTextureRegistry {
         }
     }
 
+    enum LayerType { NORMAL, SHALLOW, CUSTOM_HEIGHT }
+
+
     public static final Map<String, TextureSet> SPECIAL_TEXTURES = Map.ofEntries(
             Map.entry("crimson_nylium", tex("crimson_nylium", "netherrack", "crimson_nylium_side", "crimson_nylium_side", "dirt", false, false)),
             Map.entry("warped_nylium", tex("warped_nylium", "netherrack", "warped_nylium_side", "warped_nylium_side", "dirt", false, false)),
@@ -61,7 +65,8 @@ public class SpecialBlockTextureRegistry {
             Map.entry("mycelium", tex("mycelium_top", "dirt", "mycelium_side", "mycelium_side", "dirt", true, false)),
             Map.entry("podzol", tex("podzol_top", "dirt", "podzol_side", "podzol_side", "dirt", true, false)),
             Map.entry("grass_block", tex("grass_block_top", "dirt", "grass_block_side", "grass_block_side_overlay", "dirt", true, false)),
-            Map.entry("dirt_path", tex("dirt_path", "dirt", "dirt_path_side", "dirt_path_side", "dirt", false, false)),
+//            Map.entry("dirt_path", tex("dirt_path_top", "dirt", "dirt_path_side", "dirt_path_side", "dirt", true, false)),
+//            Map.entry("farmland", tex("farmland", "dirt", "dirt", "dirt", "dirt", true, false)),
             Map.entry("smooth_red_sandstone", tex("red_sandstone_top", "red_sandstone_top", "red_sandstone_top", "red_sandstone_top", "red_sandstone_top", false, false)),
             Map.entry("smooth_sandstone", tex("sandstone_top", "sandstone_top", "sandstone_top", "sandstone_top", "sandstone_top", false, false)),
             Map.entry("white_stained_glass", tex("white_stained_glass", "white_stained_glass", "white_stained_glass", null, "white_stained_glass", false, true)),

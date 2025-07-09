@@ -1,25 +1,19 @@
 package com.lithiumcraft.stuff_and_things.datagen;
 
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
-import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
-import com.lithiumcraft.stuff_and_things.block.LayersBlock;
-import com.lithiumcraft.stuff_and_things.block.ModBlocks;
-import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
+import com.lithiumcraft.stuff_and_things.block.*;
 import com.lithiumcraft.stuff_and_things.util.SpecialBlockTextureRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder;
+import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-
-import java.util.Map;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -30,6 +24,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         generateLayeredBlockStates();
         generateSlabBlockStates();
+        generatePathLayerBlockStates();
+        generateFarmLayerBlockStates();
+        generatePathSlabBlockStates();
+        generateFarmSlabBlockStates();
 
         lightBlockWithItem(ModBlocks.BLUE_LIGHT_BLOCK);
         lightBlockWithItem(ModBlocks.BLACK_LIGHT_BLOCK);
@@ -66,6 +64,58 @@ public class ModBlockStateProvider extends BlockStateProvider {
         glassLightBlockWithItem(ModBlocks.YELLOW_GLASS_LIGHT_BLOCK);
     }
 
+    private void generateFarmSlabBlockStates() {
+        slabWithCustomModels(SlabBlocks.FARMLAND_SLAB.get(), "farmland_slab", "_moist");
+    }
+
+    private void generatePathSlabBlockStates() {
+        slabWithCustomModels(SlabBlocks.DIRT_PATH_SLAB.get(), "dirt_path_slab");
+    }
+
+    private void generatePathLayerBlockStates() {
+        for (DeferredBlock<PathLayerBlock> block : LayeredBlocks.getPathBlocks()) {
+            String baseName = BuiltInRegistries.BLOCK.getKey(block.get()).getPath().replace("_layers_block", "");
+            MultiPartBlockStateBuilder builder = getMultipartBuilder(block.get());
+
+            for (int i = 1; i <= 8; i++) {
+                builder.part()
+                        .modelFile(models().getExistingFile(modLoc("block/" + baseName + "_layers_block_" + i)))
+                        .addModel()
+                        .condition(LayersBlock.LAYERS, i)
+                        .end();
+            }
+        }
+    }
+
+    private void generateFarmLayerBlockStates() {
+        for (DeferredBlock<FarmLayerBlock> block : LayeredBlocks.getFarmBlocks()) {
+            String baseName = BuiltInRegistries.BLOCK.getKey(block.get()).getPath().replace("_layers_block", "");
+            MultiPartBlockStateBuilder builder = getMultipartBuilder(block.get());
+
+            for (int i = 1; i <= 8; i++) {
+                // Dry (moisture == 0)
+                builder.part()
+                        .modelFile(models().getExistingFile(modLoc("block/" + baseName + "_layers_block_" + i)))
+                        .addModel()
+                        .condition(LayersBlock.LAYERS, i)
+                        .condition(FarmLayerBlock.MOISTURE, 0)
+                        .end();
+
+                // Moist (moisture > 0)
+                for (int moisture = 1; moisture <= 7; moisture++) {
+                    builder.part()
+                            .modelFile(models().getExistingFile(modLoc("block/" + baseName + "_layers_block_" + i + "_moist")))
+                            .addModel()
+                            .condition(LayersBlock.LAYERS, i)
+                            .condition(FarmLayerBlock.MOISTURE, moisture)
+                            .end();
+                }
+            }
+        }
+    }
+
+
+
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
     }
@@ -83,7 +133,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void generateLayeredBlockStates() {
-        for (DeferredHolder<Block, LayersBlock> block : LayeredBlocks.getAllBlocks()) {
+        for (DeferredHolder<Block, LayersBlock> block : LayeredBlocks.getLayerBlocks()) {
             createLayeredBlockState(block);
         }
     }
@@ -177,5 +227,31 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .partialState().with(SlabBlock.TYPE, SlabType.BOTTOM).modelForState().modelFile(bottom).addModel()
                 .partialState().with(SlabBlock.TYPE, SlabType.TOP).modelForState().modelFile(top).addModel()
                 .partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).modelForState().modelFile(full).addModel();
+    }
+
+    private void slabWithCustomModels(Block block, String baseName) {
+        slabWithCustomModels(block, baseName, "");
+    }
+
+    private void slabWithCustomModels(Block block, String baseName, String moistSuffix) {
+        getVariantBuilder(block).forAllStates(state -> {
+            SlabType type = state.getValue(SlabBlock.TYPE);
+            boolean isMoist = moistSuffix != null && !moistSuffix.isEmpty() && state.hasProperty(BlockStateProperties.MOISTURE) && state.getValue(BlockStateProperties.MOISTURE) > 0;
+
+            String suffix = isMoist ? moistSuffix : "";
+            String modelBase = baseName;
+
+            ResourceLocation bottomModel = modLoc("block/" + modelBase + suffix);
+            ResourceLocation topModel = modLoc("block/" + modelBase + "_top" + suffix);
+            ResourceLocation fullModel = modLoc("block/" + modelBase + "_full" + suffix);
+
+            return ConfiguredModel.builder()
+                    .modelFile(switch (type) {
+                        case BOTTOM -> models().getExistingFile(bottomModel);
+                        case TOP -> models().getExistingFile(topModel);
+                        case DOUBLE -> models().getExistingFile(fullModel);
+                    })
+                    .build();
+        });
     }
 }

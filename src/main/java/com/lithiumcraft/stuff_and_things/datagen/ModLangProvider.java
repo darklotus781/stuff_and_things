@@ -82,7 +82,7 @@ public class ModLangProvider extends LanguageProvider {
             add("block." + StuffAndThings.MOD_ID + "." + name, formatDisplayName(name));
         });
 
-        SlabBlocks.getSlabBlocks().forEach(holder -> {
+        SlabBlocks.getAllBlocks().forEach(holder -> {
             String name = holder.getId().getPath();
             add("block." + StuffAndThings.MOD_ID + "." + name, formatDisplayName(name));
         });

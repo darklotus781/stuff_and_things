@@ -1,12 +1,10 @@
 package com.lithiumcraft.stuff_and_things.datagen;
 
-import com.google.gson.JsonObject;
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
 import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
 import com.lithiumcraft.stuff_and_things.block.LayersBlock;
 import com.lithiumcraft.stuff_and_things.block.ModBlocks;
 import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
-import com.mojang.serialization.JsonOps;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -14,18 +12,14 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.GlowInkSacItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
-import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
@@ -83,7 +77,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     protected void buildRecipes(RecipeOutput recipeOutput) {
 
 
-        for (DeferredHolder<Block, LayersBlock> entry : LayeredBlocks.getAllBlocks()) {
+        for (DeferredHolder<Block, LayersBlock> entry : LayeredBlocks.getLayerBlocks()) {
             Block layeredBlock = entry.get();
             String fullName = entry.getId().getPath(); // e.g., "stone_layers_block"
             String baseName = fullName.replace("_layers_block", ""); // e.g., "stone"
@@ -110,7 +104,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             if (baseBlock == null || baseBlock.asItem().getDefaultInstance().isEmpty()) continue;
 
             stonecuttingRecipe(recipeOutput, fullName + "_from_" + baseName + "_block", baseBlock, slabBlock, 2);
-
         }
 
         for (ColoredLightRecipeData data : recipes) {
@@ -168,6 +161,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecuttingRecipe(recipeOutput, "iron_plating_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.IRON_PLATING_BLOCK, 2);
         stonecuttingRecipe(recipeOutput, "iron_grate_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.IRON_GRATE_BLOCK, 2);
         stonecuttingRecipe(recipeOutput, "industrial_iron_grate_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.INDUSTRIAL_IRON_GRATE_BLOCK, 2);
+        stonecuttingRecipe(recipeOutput, "farmland_layers_block_from_dirt", Items.DIRT, LayeredBlocks.FARMLAND_LAYERS_BLOCK, 8);
+        stonecuttingRecipe(recipeOutput, "dirt_path_layers_block_from_dirt", Items.DIRT, LayeredBlocks.DIRT_PATH_LAYERS_BLOCK, 8);
+        stonecuttingRecipe(recipeOutput, "farmland_slab_block_from_dirt", Items.DIRT, SlabBlocks.FARMLAND_SLAB, 8);
+        stonecuttingRecipe(recipeOutput, "dirt_path_slab_block_from_dirt", Items.DIRT, SlabBlocks.DIRT_PATH_SLAB, 8);
+
 //        stonecuttingRecipe(recipeOutput, "andesite_grate_block_from_andesite_alloy", ingredientFromId("create", "andesite_alloy"), ModBlocks.ANDESITE_GRATE_BLOCK.get(), 2, "create");
         stonecuttingRecipe(recipeOutput,
                 "andesite_grate_block_from_alloy_tag",

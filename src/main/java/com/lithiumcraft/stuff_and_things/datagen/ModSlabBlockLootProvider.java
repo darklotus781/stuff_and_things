@@ -35,14 +35,14 @@ public class ModSlabBlockLootProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        StreamSupport.stream(SlabBlocks.getSlabBlocks().spliterator(), false)
+        StreamSupport.stream(SlabBlocks.getAllBlocks().spliterator(), false)
                 .filter(holder -> !SpecialBlockTextureRegistry.SILK_TOUCH_ONLY_PATHS.contains(holder.getId().getPath()))
                 .forEach(holder -> {
                     Block block = holder.get();
                     add(block, createSlabDropTable(block));
                 });
 
-        StreamSupport.stream(SlabBlocks.getSlabBlocks().spliterator(), false)
+        StreamSupport.stream(SlabBlocks.getAllBlocks().spliterator(), false)
                 .filter(holder -> SpecialBlockTextureRegistry.SILK_TOUCH_ONLY_PATHS.contains(holder.getId().getPath()))
                 .forEach(holder -> {
                     Block block = holder.get();
@@ -104,7 +104,7 @@ public class ModSlabBlockLootProvider extends BlockLootSubProvider {
     @Override
     protected Iterable<Block> getKnownBlocks() {
         List<Block> result = new ArrayList<>();
-        for (DeferredHolder<Block, SlabBlock> holder : SlabBlocks.getSlabBlocks()) {
+        for (DeferredHolder<Block, ? extends SlabBlock> holder : SlabBlocks.getAllBlocks()) {
             result.add(holder.get());
         }
         return result;

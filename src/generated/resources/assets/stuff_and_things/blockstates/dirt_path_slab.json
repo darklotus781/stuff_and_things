@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": {
+      "model": "stuff_and_things:block/dirt_path_slab"
+    },
+    "type=bottom,waterlogged=true": {
+      "model": "stuff_and_things:block/dirt_path_slab"
+    },
+    "type=double,waterlogged=false": {
+      "model": "stuff_and_things:block/dirt_path_slab_full"
+    },
+    "type=double,waterlogged=true": {
+      "model": "stuff_and_things:block/dirt_path_slab_full"
+    },
+    "type=top,waterlogged=false": {
+      "model": "stuff_and_things:block/dirt_path_slab_top"
+    },
+    "type=top,waterlogged=true": {
+      "model": "stuff_and_things:block/dirt_path_slab_top"
+    }
+  }
+}

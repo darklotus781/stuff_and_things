@@ -34,6 +34,8 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.stuff_and_things.layered_blocks"))
                     .displayItems((parameters, output) -> {
                         LayeredBlocks.getAllBlocks().forEach(layered -> output.accept(layered.get()));
+//                        LayeredBlocks.getFarmBlocks().forEach(layered -> output.accept(layered.get()));
+//                        LayeredBlocks.getPathBlocks().forEach(layered -> output.accept(layered.get()));
                     }).build());
 
     public static final Supplier<CreativeModeTab> SLABS_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_slabs",
@@ -41,7 +43,7 @@ public class ModCreativeModeTabs {
                     .icon(() -> new ItemStack(SlabBlocks.GRASS_BLOCK_SLAB.get())) // Replace with real slab block later
                     .title(Component.translatable("creativetab.stuff_and_things.slabs"))
                     .displayItems((parameters, output) -> {
-                        SlabBlocks.getSlabBlocks().forEach(slab -> output.accept(slab.get()));
+                        SlabBlocks.getAllBlocks().forEach(slab -> output.accept(slab.get()));
                     }).build());
 
     public static final Supplier<CreativeModeTab> MISC_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_lights",

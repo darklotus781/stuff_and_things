@@ -3,9 +3,12 @@ package com.lithiumcraft.stuff_and_things.item;
 import com.lithiumcraft.stuff_and_things.block.LayersBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -45,15 +48,32 @@ public class LayeredBlockItem extends BlockItem {
                 if (!player.getAbilities().instabuild) stack.shrink(1);
                 return InteractionResult.sidedSuccess(level.isClientSide);
             } else if (layers == 7) {
-                // max → create new block with layers=8
-                BlockState newState = clickedState.setValue(LayersBlock.LAYERS, 8);
+                BlockState newState = layersBlock.getFullBlock().defaultBlockState();
                 level.setBlock(pos, newState, Block.UPDATE_ALL);
                 playPlaceSound(level, pos, newState, player);
+                // Show default block particle on the client as visual feedback
+                if (level.isClientSide) {
+                    BlockParticleOption particle = new BlockParticleOption(ParticleTypes.BLOCK, newState);
+                    RandomSource random = level.getRandom();
+
+                    for (int x = 0; x < 4; ++x) {
+                        for (int y = 0; y < 4; ++y) {
+                            for (int z = 0; z < 4; ++z) {
+                                double px = pos.getX() + (x + 0.5) / 4.0;
+                                double py = pos.getY() + (y + 0.5) / 4.0;
+                                double pz = pos.getZ() + (z + 0.5) / 4.0;
+
+                                double dx = px - pos.getX() - 0.5;
+                                double dy = py - pos.getY() - 0.5;
+                                double dz = pz - pos.getZ() - 0.5;
+
+                                level.addParticle(particle, px, py, pz, dx, dy, dz);
+                            }
+                        }
+                    }
+                }
                 if (!player.getAbilities().instabuild) stack.shrink(1);
                 return InteractionResult.sidedSuccess(level.isClientSide);
-            } else if (layers == 8 && face == Direction.UP) {
-                // Let vanilla handle placing a new block on top
-                return super.useOn(context);
             } else {
                 return InteractionResult.FAIL;
             }

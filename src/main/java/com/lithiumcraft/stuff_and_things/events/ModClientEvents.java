@@ -45,7 +45,7 @@ public class ModClientEvents {
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             // Handle Layered Blocks
-            LayeredBlocks.getAllBlocks().forEach(holder -> {
+            LayeredBlocks.getLayerBlocks().forEach(holder -> {
                 String baseName = holder.getId().getPath().replace("_layers_block", "");
                 var tex = SpecialBlockTextureRegistry.getTextureSet(baseName);
 

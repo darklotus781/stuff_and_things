@@ -25,7 +25,7 @@ public class ModBlockModelProvider extends BlockModelProvider {
 
     @Override
     protected void registerModels() {
-        generateLayeredBlockModels(LayeredBlocks.getAllBlocks());
+        generateLayeredBlockModels(LayeredBlocks.getLayerBlocks());
         generateSlabBlockModels(SlabBlocks.getSlabBlocks());
     }
 
@@ -89,14 +89,21 @@ public class ModBlockModelProvider extends BlockModelProvider {
 
             // Non-cutout fallback: cube or cube_all
             if (textures != null && textures.hasIndividualFaces()) {
-                getBuilder(modelName)
-                        .parent(new ModelFile.UncheckedModelFile("minecraft:block/cube"))
-                        .texture("top", textures.top())
+                BlockModelBuilder builder = getBuilder(modelName)
+                        .parent(new ModelFile.UncheckedModelFile("minecraft:block/cube"));
+
+                builder.texture("top", textures.top())
                         .texture("bottom", textures.bottom())
-                        .texture("side", textures.side())
-                        .texture("particle", textures.particle() != null && !textures.particle().isBlank()
-                                ? textures.particle()
-                                : textures.top());
+                        .texture("side", textures.side());
+
+                if (textures.overlay() != null && !textures.overlay().isBlank()) {
+                    builder.texture("overlay", textures.overlay());
+                }
+                if (textures.particle() != null && !textures.particle().isBlank()) {
+                    builder.texture("particle", textures.particle());
+                } else {
+                    builder.texture("particle", textures.top()); // fallback to top
+                }
             } else {
                 cubeAll(modelName,
                         safeResource(textures != null ? textures.top() : "minecraft:block/" + baseName));
@@ -126,8 +133,12 @@ public class ModBlockModelProvider extends BlockModelProvider {
 
             // Only use _translucent suffix for slab models
             String suffix = "";
-            if (textures != null && textures.useTranslucent()) {
-                suffix = "_translucent";
+            if (textures != null) {
+                if (textures.useTranslucent()) {
+                    suffix = "_translucent";
+                } else if (textures.useCutout()) {
+                    suffix = "_cutout";
+                }
             }
 
             String slabModel = "stuff_and_things:block/slab" + suffix;
@@ -143,14 +154,23 @@ public class ModBlockModelProvider extends BlockModelProvider {
                         .texture("top", textures.top())
                         .texture("side", textures.side())
                         .texture("particle", textures.particle());
+                if (textures.overlay() != null && !textures.overlay().isBlank()) {
+                    slabBuilder.texture("overlay", textures.overlay());
+                }
                 slabTopBuilder.texture("bottom", textures.bottom())
                         .texture("top", textures.top())
                         .texture("side", textures.side())
                         .texture("particle", textures.particle());
+                if (textures.overlay() != null && !textures.overlay().isBlank()) {
+                    slabTopBuilder.texture("overlay", textures.overlay());
+                }
                 slabFullBuilder.texture("bottom", textures.bottom())
                         .texture("top", textures.top())
                         .texture("side", textures.side())
                         .texture("particle", textures.particle());
+                if (textures.overlay() != null && !textures.overlay().isBlank()) {
+                    slabFullBuilder.texture("overlay", textures.overlay());
+                }
             } else {
                 String uniform = "minecraft:block/" + baseName;
                 slabBuilder.texture("bottom", uniform)

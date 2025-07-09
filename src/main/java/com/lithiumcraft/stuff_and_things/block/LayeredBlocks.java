@@ -2,10 +2,8 @@ package com.lithiumcraft.stuff_and_things.block;
 
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
 import com.lithiumcraft.stuff_and_things.item.LayeredBlockItem;
-import com.lithiumcraft.stuff_and_things.item.ModItems;
 import com.lithiumcraft.stuff_and_things.util.SpecialBlockTextureRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -15,15 +13,14 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class LayeredBlocks {
 
@@ -31,6 +28,8 @@ public class LayeredBlocks {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(StuffAndThings.MOD_ID);
 
     private static final Map<String, DeferredBlock<LayersBlock>> LAYERED_BLOCKS = new LinkedHashMap<>();
+    private static final Map<String, DeferredBlock<PathLayerBlock>> PATH_LAYER_BLOCKS = new LinkedHashMap<>();
+    private static final Map<String, DeferredBlock<FarmLayerBlock>> FARM_LAYER_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredItem<? extends Item>> LAYERED_BLOCK_ITEMS = new LinkedHashMap<>();
 
     // === Main Registration ===
@@ -53,7 +52,9 @@ public class LayeredBlocks {
     public static final DeferredBlock<LayersBlock> DEEPSLATE_LAYERS_BLOCK = register("deepslate_layers_block", Blocks.DEEPSLATE, false);
     public static final DeferredBlock<LayersBlock> DIORITE_LAYERS_BLOCK = register("diorite_layers_block", Blocks.DIORITE, false);
     public static final DeferredBlock<LayersBlock> DIRT_LAYERS_BLOCK = register("dirt_layers_block", Blocks.DIRT, false);
+    public static final DeferredBlock<PathLayerBlock> DIRT_PATH_LAYERS_BLOCK = registerPathBlock("dirt_path_layers_block", Blocks.DIRT_PATH);
     public static final DeferredBlock<LayersBlock> END_STONE_LAYERS_BLOCK = register("end_stone_layers_block", Blocks.END_STONE, false);
+    public static final DeferredBlock<FarmLayerBlock> FARMLAND_LAYERS_BLOCK = registerFarmBlock("farmland_layers_block", Blocks.FARMLAND);
     public static final DeferredBlock<LayersBlock> GRANITE_LAYERS_BLOCK = register("granite_layers_block", Blocks.GRANITE, false);
     public static final DeferredBlock<LayersBlock> GRASS_BLOCK_LAYERS_BLOCK = register("grass_block_layers_block", Blocks.GRASS_BLOCK, false);
     public static final DeferredBlock<LayersBlock> GRAVEL_LAYERS_BLOCK = register("gravel_layers_block", Blocks.GRAVEL, false);
@@ -96,6 +97,24 @@ public class LayeredBlocks {
         DeferredBlock<LayersBlock> block = BLOCKS.register(name, () -> new LayersBlock(copyOf(baseBlock, translucent).requiresCorrectToolForDrops(), baseBlock));
         DeferredItem<LayeredBlockItem> item = ITEMS.register(name, () -> new LayeredBlockItem(block.get(), new Item.Properties()));
         LAYERED_BLOCKS.put(name, block);
+        LAYERED_BLOCK_ITEMS.put(name, item);
+        return block;
+    }
+
+    // === Register a single shadow layered block===
+    private static DeferredBlock<PathLayerBlock> registerPathBlock(String name, Block baseBlock) {
+        DeferredBlock<PathLayerBlock> block = BLOCKS.register(name, () -> new PathLayerBlock(copyOf(baseBlock, false).requiresCorrectToolForDrops(), baseBlock));
+        DeferredItem<LayeredBlockItem> item = ITEMS.register(name, () -> new LayeredBlockItem(block.get(), new Item.Properties()));
+        PATH_LAYER_BLOCKS.put(name, block);
+        LAYERED_BLOCK_ITEMS.put(name, item);
+        return block;
+    }
+
+    // === Register a single shadow layered block===
+    private static DeferredBlock<FarmLayerBlock> registerFarmBlock(String name, Block baseBlock) {
+        DeferredBlock<FarmLayerBlock> block = BLOCKS.register(name, () -> new FarmLayerBlock(copyOf(baseBlock, false).randomTicks().requiresCorrectToolForDrops(), baseBlock));
+        DeferredItem<LayeredBlockItem> item = ITEMS.register(name, () -> new LayeredBlockItem(block.get(), new Item.Properties()));
+        FARM_LAYER_BLOCKS.put(name, block);
         LAYERED_BLOCK_ITEMS.put(name, item);
         return block;
     }
@@ -147,8 +166,28 @@ public class LayeredBlocks {
         return (Collection<DeferredItem<LayeredBlockItem>>) (Collection<?>) LAYERED_BLOCK_ITEMS.values();
     }
 
-    public static Iterable<DeferredBlock<LayersBlock>> getAllBlocks() {
+    public static Iterable<DeferredBlock<LayersBlock>> getLayerBlocks() {
         return LAYERED_BLOCKS.values();
+    }
+
+    public static Iterable<DeferredBlock<PathLayerBlock>> getPathBlocks() {
+        return PATH_LAYER_BLOCKS.values();
+    }
+
+    public static Iterable<DeferredBlock<FarmLayerBlock>> getFarmBlocks() {
+        return FARM_LAYER_BLOCKS.values();
+    }
+
+    public static Iterable<DeferredBlock<? extends LayersBlock>> getAllBlocks() {
+        return Stream.concat(
+                        Stream.concat(
+                                LAYERED_BLOCKS.values().stream(),
+                                PATH_LAYER_BLOCKS.values().stream()
+                        ),
+                        FARM_LAYER_BLOCKS.values().stream()
+                )
+                .sorted(Comparator.comparing(b -> b.getId().getPath()))
+                .toList();
     }
 
     public static void register(IEventBus eventBus) {

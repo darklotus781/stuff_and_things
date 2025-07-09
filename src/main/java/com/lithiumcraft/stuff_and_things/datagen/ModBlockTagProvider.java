@@ -133,6 +133,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(SlabBlocks.RED_SAND_SLAB.get())
                 .add(SlabBlocks.ROOTED_DIRT_SLAB.get())
                 .add(SlabBlocks.SAND_SLAB.get())
+                .add(SlabBlocks.DIRT_PATH_SLAB.get())
+                .add(SlabBlocks.FARMLAND_SLAB.get())
 
                 .add(ModBlocks.HOT_COAL_BLOCK.get())
                 .add(ModBlocks.COMPRESSED_COAL_BLOCK.get())
@@ -140,7 +142,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.MULCH_BLOCK.get())
                 .add(ModBlocks.COMPRESSED_MULCH_BLOCK.get())
                 .add(ModBlocks.AGED_COMPRESSED_MULCH_BLOCK.get())
-                .add(ModBlocks.HOT_AGED_COMPRESSED_MULCH_BLOCK.get());
+                .add(ModBlocks.HOT_AGED_COMPRESSED_MULCH_BLOCK.get())
+                .add(LayeredBlocks.FARMLAND_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DIRT_PATH_LAYERS_BLOCK.get());
 
         this.tag(BlockTags.NEEDS_STONE_TOOL);
 
@@ -161,18 +165,30 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         .map(DeferredHolder::get)
                         .toArray(Block[]::new));
 
-        for (DeferredHolder<Block, LayersBlock> block : LayeredBlocks.getAllBlocks()) {
+        for (DeferredHolder<Block, ? extends LayersBlock> block : LayeredBlocks.getAllBlocks()) {
             String blockName = block.getId().getPath();
 
             this.tag(ModTags.Blocks.LAYER_BLOCKS).add(block.get());
         }
 
-        for (DeferredHolder<Block, SlabBlock> block : SlabBlocks.getSlabBlocks()) {
+        for (DeferredHolder<Block, ? extends SlabBlock> block : SlabBlocks.getAllBlocks()) {
             String blockName = block.getId().getPath();
 
             this.tag(ModTags.Blocks.SLABS).add(block.get());
             this.tag(BlockTags.SLABS).add(block.get());
         }
+
+//        this.tag(ModTags.Blocks.LAYER_BLOCKS)
+//                .add(LayeredBlocks.FARMLAND_LAYERS_BLOCK.get())
+//                .add(LayeredBlocks.DIRT_PATH_LAYERS_BLOCK.get());
+
+//        this.tag(ModTags.Blocks.SLABS)
+//                .add(SlabBlocks.DIRT_PATH_SLAB.get())
+//                .add(SlabBlocks.FARMLAND_SLAB.get());
+//
+//        this.tag(BlockTags.SLABS)
+//                .add(SlabBlocks.DIRT_PATH_SLAB.get())
+//                .add(SlabBlocks.FARMLAND_SLAB.get());
 
         this.tag(BlockTags.DIRT)
                 .add(LayeredBlocks.COARSE_DIRT_LAYERS_BLOCK.get())
@@ -181,13 +197,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(LayeredBlocks.MYCELIUM_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.PODZOL_LAYERS_BLOCK.get())
                 .add(LayeredBlocks.ROOTED_DIRT_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.FARMLAND_LAYERS_BLOCK.get())
+                .add(LayeredBlocks.DIRT_PATH_LAYERS_BLOCK.get())
 
                 .add(SlabBlocks.COARSE_DIRT_SLAB.get())
                 .add(SlabBlocks.DIRT_SLAB.get())
                 .add(SlabBlocks.GRASS_BLOCK_SLAB.get())
                 .add(SlabBlocks.MYCELIUM_SLAB.get())
                 .add(SlabBlocks.PODZOL_SLAB.get())
-                .add(SlabBlocks.ROOTED_DIRT_SLAB.get());
+                .add(SlabBlocks.ROOTED_DIRT_SLAB.get())
+                .add(SlabBlocks.DIRT_PATH_SLAB.get())
+                .add(SlabBlocks.FARMLAND_SLAB.get());
 
         this.tag(BlockTags.SAND)
                 .add(LayeredBlocks.SAND_LAYERS_BLOCK.get())

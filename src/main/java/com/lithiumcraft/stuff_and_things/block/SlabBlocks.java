@@ -13,7 +13,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.IEventBus;
@@ -25,18 +26,32 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class SlabBlocks extends SlabBlock {
-    public SlabBlocks(Properties properties) {
+    protected final Block fullBlock;
+    public static final EnumProperty<SlabType> TYPE;
+    public static final BooleanProperty WATERLOGGED;
+
+    public SlabBlocks(Properties properties, Block fullBlock) {
         super(properties);
+        this.fullBlock = fullBlock;
+        this.registerDefaultState((BlockState)((BlockState)this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM)).setValue(WATERLOGGED, false));
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(new Property[]{TYPE, WATERLOGGED});
     }
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(StuffAndThings.MOD_ID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(StuffAndThings.MOD_ID);
 
     private static final Map<String, DeferredBlock<SlabBlock>> SLAB_BLOCKS = new LinkedHashMap<>();
+    private static final Map<String, DeferredBlock<PathSlabBlock>> PATH_SLAB_BLOCKS = new LinkedHashMap<>();
+    private static final Map<String, DeferredBlock<FarmSlabBlock>> FARM_SLAB_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredItem<BlockItem>> SLAB_ITEMS = new LinkedHashMap<>();
 
     public static final DeferredBlock<SlabBlock> BLUE_ICE_SLAB = register("blue_ice_slab", Blocks.BLUE_ICE, true);
@@ -45,7 +60,9 @@ public class SlabBlocks extends SlabBlock {
     public static final DeferredBlock<SlabBlock> COARSE_DIRT_SLAB = register("coarse_dirt_slab", Blocks.COARSE_DIRT, true);
     public static final DeferredBlock<SlabBlock> CRIMSON_NYLIUM_SLAB = register("crimson_nylium_slab", Blocks.CRIMSON_NYLIUM, true);
     public static final DeferredBlock<SlabBlock> DIRT_SLAB = register("dirt_slab", Blocks.DIRT, true);
+    public static final DeferredBlock<PathSlabBlock> DIRT_PATH_SLAB = registerPathSlab("dirt_path_slab", Blocks.DIRT_PATH);
     public static final DeferredBlock<SlabBlock> END_STONE_SLAB = register("end_stone_slab", Blocks.END_STONE, true);
+    public static final DeferredBlock<FarmSlabBlock> FARMLAND_SLAB = registerFarmSlab("farmland_slab", Blocks.FARMLAND);
     public static final DeferredBlock<SlabBlock> GRASS_BLOCK_SLAB = register("grass_block_slab", Blocks.GRASS_BLOCK, true);
     public static final DeferredBlock<SlabBlock> GRAVEL_SLAB = register("gravel_slab", Blocks.GRAVEL, true);
     public static final DeferredBlock<SlabBlock> ICE_SLAB = register("ice_slab", Blocks.ICE, true);
@@ -77,6 +94,30 @@ public class SlabBlocks extends SlabBlock {
         DeferredItem<BlockItem> item = ITEMS.register(name, () ->
                 new BlockItem(block.get(), new Item.Properties()));
         SLAB_BLOCKS.put(name, block);
+        SLAB_ITEMS.put(name, item);
+        return block;
+    }
+
+    // === Register a single slab block ===
+    private static DeferredBlock<PathSlabBlock> registerPathSlab(String name, Block baseBlock) {
+        DeferredBlock<PathSlabBlock> block = BLOCKS.register(name, () ->
+                new PathSlabBlock(copyOf(baseBlock, false).requiresCorrectToolForDrops(), baseBlock)
+        );
+        DeferredItem<BlockItem> item = ITEMS.register(name, () ->
+                new BlockItem(block.get(), new Item.Properties()));
+        PATH_SLAB_BLOCKS.put(name, block);
+        SLAB_ITEMS.put(name, item);
+        return block;
+    }
+
+    // === Register a single slab block ===
+    private static DeferredBlock<FarmSlabBlock> registerFarmSlab(String name, Block baseBlock) {
+        DeferredBlock<FarmSlabBlock> block = BLOCKS.register(name, () ->
+                new FarmSlabBlock(copyOf(baseBlock, false).randomTicks().requiresCorrectToolForDrops(), baseBlock)
+        );
+        DeferredItem<BlockItem> item = ITEMS.register(name, () ->
+                new BlockItem(block.get(), new Item.Properties()));
+        FARM_SLAB_BLOCKS.put(name, block);
         SLAB_ITEMS.put(name, item);
         return block;
     }
@@ -134,12 +175,37 @@ public class SlabBlocks extends SlabBlock {
         return SLAB_BLOCKS.values();
     }
 
-    public static Collection<DeferredItem<BlockItem>> getAllSlabItems() {
+    public static Collection<DeferredBlock<PathSlabBlock>> getPathSlabBlocks() {
+        return PATH_SLAB_BLOCKS.values();
+    }
+
+    public static Collection<DeferredBlock<FarmSlabBlock>> getFarmSlabBlocks() {
+        return FARM_SLAB_BLOCKS.values();
+    }
+
+    public static Collection<DeferredBlock<? extends SlabBlock>> getAllBlocks() {
+        return Stream.concat(
+                        Stream.concat(
+                                SLAB_BLOCKS.values().stream(),
+                                PATH_SLAB_BLOCKS.values().stream()
+                        ),
+                        FARM_SLAB_BLOCKS.values().stream()
+                )
+                .sorted(Comparator.comparing(b -> b.getId().getPath()))
+                .toList();
+    }
+
+    public static Collection<DeferredItem<BlockItem>> getAllItems() {
         return SLAB_ITEMS.values();
     }
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
         ITEMS.register(eventBus);
+    }
+
+    static {
+        TYPE = BlockStateProperties.SLAB_TYPE;
+        WATERLOGGED = BlockStateProperties.WATERLOGGED;
     }
 }
