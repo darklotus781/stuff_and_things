@@ -1,4 +1,6 @@
 ## 1.0.6
+- Added a Chisel Item to be used in the removal of Layers and Slabs in the event Create mod isn't installed.
+- Also added a Proof of Concept for Stairs using Blue Ice Stairs.
 
 ## 1.0.5
 - Introduced Dirt Path and FarmLand Layers
