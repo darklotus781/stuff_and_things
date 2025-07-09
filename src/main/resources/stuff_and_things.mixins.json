@@ -3,6 +3,7 @@
   "package": "com.lithiumcraft.stuff_and_things.mixin",
   "mixins": [
     "BushBlockMixin",
+    "CropBlockMixin",
     "MushroomBlockMixin"
   ],
   "client": [],

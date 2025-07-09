@@ -2,12 +2,14 @@ package com.lithiumcraft.stuff_and_things.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -16,26 +18,25 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.FarmlandWaterManager;
 
 import javax.annotation.Nullable;
 
 public class LayersBlock extends Block implements SimpleWaterloggedBlock {
     public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 8);
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
-    private final Block fullBlock;
+    public static final BooleanProperty WATERLOGGED;
+    protected final Block fullBlock;
 
     public LayersBlock(Properties properties, Block fullBlock) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(LAYERS, 1).setValue(WATERLOGGED, false));
         this.fullBlock = fullBlock;
-
     }
 
     @Override
@@ -54,12 +55,6 @@ public class LayersBlock extends Block implements SimpleWaterloggedBlock {
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
-
-//    @Override
-//    public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
-//        int layers = state.getValue(LAYERS);
-//        return Block.box(0.0, 0.0, 0.0, 16.0, layers * 2.0, 16.0);
-//    }
 
     @Override
     public VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
@@ -101,7 +96,7 @@ public class LayersBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(LAYERS, WATERLOGGED);
+        builder.add(new Property[]{LAYERS, WATERLOGGED});
     }
 
     @Override
@@ -126,21 +121,24 @@ public class LayersBlock extends Block implements SimpleWaterloggedBlock {
             return currentState.setValue(LAYERS, Math.min(7, layers + 1));
         }
 
-        // Check if the block is being placed in water
         boolean waterlogged = fluid.getType() == Fluids.WATER;
 
-        return this.defaultBlockState()
+        BlockState baseState = this.defaultBlockState()
                 .setValue(LAYERS, 1)
                 .setValue(WATERLOGGED, waterlogged);
+
+        return baseState;
     }
 
     @Override
     public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
-        ItemStack heldItem = context.getItemInHand();
-        Block heldBlock = Block.byItem(heldItem.getItem());
+        if (state.getValue(LAYERS) == 8) return false;
 
-        return heldBlock == this && state.getValue(LAYERS) < 8;
+        ItemStack held = context.getItemInHand();
+        Block heldBlock = Block.byItem(held.getItem());
+        return heldBlock == this && context.getClickedFace() == Direction.UP;
     }
+
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
@@ -170,18 +168,21 @@ public class LayersBlock extends Block implements SimpleWaterloggedBlock {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    @Override
-    public BlockState updateShape(BlockState state, Direction dir, BlockState neighbor, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        if (state.getValue(WATERLOGGED)) {
-            if (state.getValue(LAYERS) > 7) {
-                // Force clear water once full block
-                return state.setValue(WATERLOGGED, false);
-            }
+//    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+//        if ((Boolean)state.getValue(WATERLOGGED)) {
+//            level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+//        }
+//
+//        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+//    }
 
+    @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if ((Boolean)state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
 
-        return super.updateShape(state, dir, neighbor, level, pos, neighborPos);
+        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 
     @Override
@@ -208,5 +209,9 @@ public class LayersBlock extends Block implements SimpleWaterloggedBlock {
         if (!oldState.is(newState.getBlock())) {
             super.onRemove(oldState, level, pos, newState, isMoving);
         }
+    }
+
+    static {
+        WATERLOGGED = BlockStateProperties.WATERLOGGED;
     }
 }

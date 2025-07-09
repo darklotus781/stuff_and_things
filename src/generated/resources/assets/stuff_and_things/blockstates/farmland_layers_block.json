@@ -1,0 +1,580 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_1"
+      },
+      "when": {
+        "layers": "1",
+        "moisture": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_1_moist"
+      },
+      "when": {
+        "layers": "1",
+        "moisture": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_1_moist"
+      },
+      "when": {
+        "layers": "1",
+        "moisture": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_1_moist"
+      },
+      "when": {
+        "layers": "1",
+        "moisture": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_1_moist"
+      },
+      "when": {
+        "layers": "1",
+        "moisture": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_1_moist"
+      },
+      "when": {
+        "layers": "1",
+        "moisture": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_1_moist"
+      },
+      "when": {
+        "layers": "1",
+        "moisture": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_1_moist"
+      },
+      "when": {
+        "layers": "1",
+        "moisture": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_2"
+      },
+      "when": {
+        "layers": "2",
+        "moisture": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_2_moist"
+      },
+      "when": {
+        "layers": "2",
+        "moisture": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_2_moist"
+      },
+      "when": {
+        "layers": "2",
+        "moisture": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_2_moist"
+      },
+      "when": {
+        "layers": "2",
+        "moisture": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_2_moist"
+      },
+      "when": {
+        "layers": "2",
+        "moisture": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_2_moist"
+      },
+      "when": {
+        "layers": "2",
+        "moisture": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_2_moist"
+      },
+      "when": {
+        "layers": "2",
+        "moisture": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_2_moist"
+      },
+      "when": {
+        "layers": "2",
+        "moisture": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_3"
+      },
+      "when": {
+        "layers": "3",
+        "moisture": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_3_moist"
+      },
+      "when": {
+        "layers": "3",
+        "moisture": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_3_moist"
+      },
+      "when": {
+        "layers": "3",
+        "moisture": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_3_moist"
+      },
+      "when": {
+        "layers": "3",
+        "moisture": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_3_moist"
+      },
+      "when": {
+        "layers": "3",
+        "moisture": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_3_moist"
+      },
+      "when": {
+        "layers": "3",
+        "moisture": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_3_moist"
+      },
+      "when": {
+        "layers": "3",
+        "moisture": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_3_moist"
+      },
+      "when": {
+        "layers": "3",
+        "moisture": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_4"
+      },
+      "when": {
+        "layers": "4",
+        "moisture": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_4_moist"
+      },
+      "when": {
+        "layers": "4",
+        "moisture": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_4_moist"
+      },
+      "when": {
+        "layers": "4",
+        "moisture": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_4_moist"
+      },
+      "when": {
+        "layers": "4",
+        "moisture": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_4_moist"
+      },
+      "when": {
+        "layers": "4",
+        "moisture": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_4_moist"
+      },
+      "when": {
+        "layers": "4",
+        "moisture": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_4_moist"
+      },
+      "when": {
+        "layers": "4",
+        "moisture": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_4_moist"
+      },
+      "when": {
+        "layers": "4",
+        "moisture": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_5"
+      },
+      "when": {
+        "layers": "5",
+        "moisture": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_5_moist"
+      },
+      "when": {
+        "layers": "5",
+        "moisture": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_5_moist"
+      },
+      "when": {
+        "layers": "5",
+        "moisture": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_5_moist"
+      },
+      "when": {
+        "layers": "5",
+        "moisture": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_5_moist"
+      },
+      "when": {
+        "layers": "5",
+        "moisture": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_5_moist"
+      },
+      "when": {
+        "layers": "5",
+        "moisture": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_5_moist"
+      },
+      "when": {
+        "layers": "5",
+        "moisture": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_5_moist"
+      },
+      "when": {
+        "layers": "5",
+        "moisture": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_6"
+      },
+      "when": {
+        "layers": "6",
+        "moisture": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_6_moist"
+      },
+      "when": {
+        "layers": "6",
+        "moisture": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_6_moist"
+      },
+      "when": {
+        "layers": "6",
+        "moisture": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_6_moist"
+      },
+      "when": {
+        "layers": "6",
+        "moisture": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_6_moist"
+      },
+      "when": {
+        "layers": "6",
+        "moisture": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_6_moist"
+      },
+      "when": {
+        "layers": "6",
+        "moisture": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_6_moist"
+      },
+      "when": {
+        "layers": "6",
+        "moisture": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_6_moist"
+      },
+      "when": {
+        "layers": "6",
+        "moisture": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_7"
+      },
+      "when": {
+        "layers": "7",
+        "moisture": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_7_moist"
+      },
+      "when": {
+        "layers": "7",
+        "moisture": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_7_moist"
+      },
+      "when": {
+        "layers": "7",
+        "moisture": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_7_moist"
+      },
+      "when": {
+        "layers": "7",
+        "moisture": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_7_moist"
+      },
+      "when": {
+        "layers": "7",
+        "moisture": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_7_moist"
+      },
+      "when": {
+        "layers": "7",
+        "moisture": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_7_moist"
+      },
+      "when": {
+        "layers": "7",
+        "moisture": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_7_moist"
+      },
+      "when": {
+        "layers": "7",
+        "moisture": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_8"
+      },
+      "when": {
+        "layers": "8",
+        "moisture": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_8_moist"
+      },
+      "when": {
+        "layers": "8",
+        "moisture": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_8_moist"
+      },
+      "when": {
+        "layers": "8",
+        "moisture": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_8_moist"
+      },
+      "when": {
+        "layers": "8",
+        "moisture": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_8_moist"
+      },
+      "when": {
+        "layers": "8",
+        "moisture": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_8_moist"
+      },
+      "when": {
+        "layers": "8",
+        "moisture": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_8_moist"
+      },
+      "when": {
+        "layers": "8",
+        "moisture": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "stuff_and_things:block/farmland_layers_block_8_moist"
+      },
+      "when": {
+        "layers": "8",
+        "moisture": "7"
+      }
+    }
+  ]
+}

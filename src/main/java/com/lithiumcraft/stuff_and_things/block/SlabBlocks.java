@@ -45,7 +45,9 @@ public class SlabBlocks extends SlabBlock {
     public static final DeferredBlock<SlabBlock> COARSE_DIRT_SLAB = register("coarse_dirt_slab", Blocks.COARSE_DIRT, true);
     public static final DeferredBlock<SlabBlock> CRIMSON_NYLIUM_SLAB = register("crimson_nylium_slab", Blocks.CRIMSON_NYLIUM, true);
     public static final DeferredBlock<SlabBlock> DIRT_SLAB = register("dirt_slab", Blocks.DIRT, true);
+//    public static final DeferredBlock<SlabBlock> DIRT_PATH_SLAB = register("dirt_path_slab", Blocks.DIRT_PATH, true);
     public static final DeferredBlock<SlabBlock> END_STONE_SLAB = register("end_stone_slab", Blocks.END_STONE, true);
+//    public static final DeferredBlock<SlabBlock> FARMLAND_SLAB = register("farmland_slab", Blocks.FARMLAND, true);
     public static final DeferredBlock<SlabBlock> GRASS_BLOCK_SLAB = register("grass_block_slab", Blocks.GRASS_BLOCK, true);
     public static final DeferredBlock<SlabBlock> GRAVEL_SLAB = register("gravel_slab", Blocks.GRAVEL, true);
     public static final DeferredBlock<SlabBlock> ICE_SLAB = register("ice_slab", Blocks.ICE, true);

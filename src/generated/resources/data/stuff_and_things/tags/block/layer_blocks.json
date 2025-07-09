@@ -68,6 +68,8 @@
     "stuff_and_things:brown_stained_glass_layers_block",
     "stuff_and_things:green_stained_glass_layers_block",
     "stuff_and_things:red_stained_glass_layers_block",
-    "stuff_and_things:black_stained_glass_layers_block"
+    "stuff_and_things:black_stained_glass_layers_block",
+    "stuff_and_things:farmland_layers_block",
+    "stuff_and_things:dirt_path_layers_block"
   ]
 }

@@ -1,25 +1,17 @@
 package com.lithiumcraft.stuff_and_things.datagen;
 
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
-import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
-import com.lithiumcraft.stuff_and_things.block.LayersBlock;
-import com.lithiumcraft.stuff_and_things.block.ModBlocks;
-import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
+import com.lithiumcraft.stuff_and_things.block.*;
 import com.lithiumcraft.stuff_and_things.util.SpecialBlockTextureRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.VariantBlockStateBuilder;
+import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-
-import java.util.Map;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -30,6 +22,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         generateLayeredBlockStates();
         generateSlabBlockStates();
+        generatePathLayerBlockStates();
+        generateFarmLayerBlockStates();
 
         lightBlockWithItem(ModBlocks.BLUE_LIGHT_BLOCK);
         lightBlockWithItem(ModBlocks.BLACK_LIGHT_BLOCK);
@@ -65,6 +59,50 @@ public class ModBlockStateProvider extends BlockStateProvider {
         glassLightBlockWithItem(ModBlocks.WHITE_GLASS_LIGHT_BLOCK);
         glassLightBlockWithItem(ModBlocks.YELLOW_GLASS_LIGHT_BLOCK);
     }
+
+    private void generatePathLayerBlockStates() {
+        for (DeferredBlock<PathLayerBlock> block : LayeredBlocks.getPathBlocks()) {
+            String baseName = BuiltInRegistries.BLOCK.getKey(block.get()).getPath().replace("_layers_block", "");
+            MultiPartBlockStateBuilder builder = getMultipartBuilder(block.get());
+
+            for (int i = 1; i <= 8; i++) {
+                builder.part()
+                        .modelFile(models().getExistingFile(modLoc("block/" + baseName + "_layers_block_" + i)))
+                        .addModel()
+                        .condition(LayersBlock.LAYERS, i)
+                        .end();
+            }
+        }
+    }
+
+    private void generateFarmLayerBlockStates() {
+        for (DeferredBlock<FarmLayerBlock> block : LayeredBlocks.getFarmBlocks()) {
+            String baseName = BuiltInRegistries.BLOCK.getKey(block.get()).getPath().replace("_layers_block", "");
+            MultiPartBlockStateBuilder builder = getMultipartBuilder(block.get());
+
+            for (int i = 1; i <= 8; i++) {
+                // Dry (moisture == 0)
+                builder.part()
+                        .modelFile(models().getExistingFile(modLoc("block/" + baseName + "_layers_block_" + i)))
+                        .addModel()
+                        .condition(LayersBlock.LAYERS, i)
+                        .condition(FarmLayerBlock.MOISTURE, 0)
+                        .end();
+
+                // Moist (moisture > 0)
+                for (int moisture = 1; moisture <= 7; moisture++) {
+                    builder.part()
+                            .modelFile(models().getExistingFile(modLoc("block/" + baseName + "_layers_block_" + i + "_moist")))
+                            .addModel()
+                            .condition(LayersBlock.LAYERS, i)
+                            .condition(FarmLayerBlock.MOISTURE, moisture)
+                            .end();
+                }
+            }
+        }
+    }
+
+
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));

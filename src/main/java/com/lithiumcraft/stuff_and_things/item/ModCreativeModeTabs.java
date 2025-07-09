@@ -34,6 +34,8 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.stuff_and_things.layered_blocks"))
                     .displayItems((parameters, output) -> {
                         LayeredBlocks.getAllBlocks().forEach(layered -> output.accept(layered.get()));
+                        LayeredBlocks.getFarmBlocks().forEach(layered -> output.accept(layered.get()));
+                        LayeredBlocks.getPathBlocks().forEach(layered -> output.accept(layered.get()));
                     }).build());
 
     public static final Supplier<CreativeModeTab> SLABS_TAB = CREATIVE_MODE_TABS.register("stuff_and_things_slabs",

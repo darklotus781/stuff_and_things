@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:dirt"
+  },
+  "result": {
+    "count": 8,
+    "id": "stuff_and_things:farmland_layers_block"
+  }
+}

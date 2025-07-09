@@ -1,15 +1,19 @@
 package com.lithiumcraft.stuff_and_things.datagen;
 
 import com.lithiumcraft.stuff_and_things.StuffAndThings;
+import com.lithiumcraft.stuff_and_things.block.FarmLayerBlock;
 import com.lithiumcraft.stuff_and_things.block.LayeredBlocks;
+import com.lithiumcraft.stuff_and_things.block.PathLayerBlock;
 import com.lithiumcraft.stuff_and_things.block.SlabBlocks;
 import com.lithiumcraft.stuff_and_things.util.SpecialBlockTextureRegistry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ModItemModelProvider extends ItemModelProvider {
@@ -21,6 +25,22 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         LayeredBlocks.getAllItems().forEach(this::layeredBlockItem);
         registerSlabBlockItems();
+        registerPathLayerBlockItems();
+        registerFarmLayerBlockItems();
+    }
+
+    private void registerPathLayerBlockItems() {
+        for (DeferredBlock<PathLayerBlock> block : LayeredBlocks.getPathBlocks()) {
+            String name = BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
+            withExistingParent(name, modLoc("block/" + name + "_1")); // Use the full layer model
+        }
+    }
+
+    private void registerFarmLayerBlockItems() {
+        for (DeferredBlock<FarmLayerBlock> block : LayeredBlocks.getFarmBlocks()) {
+            String name = BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
+            withExistingParent(name, modLoc("block/" + name + "_1")); // Use the full layer model
+        }
     }
 
     private ItemModelBuilder layeredBlockItem(DeferredHolder<Item, ?> item) {

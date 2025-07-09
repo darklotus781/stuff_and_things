@@ -110,7 +110,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             if (baseBlock == null || baseBlock.asItem().getDefaultInstance().isEmpty()) continue;
 
             stonecuttingRecipe(recipeOutput, fullName + "_from_" + baseName + "_block", baseBlock, slabBlock, 2);
-
         }
 
         for (ColoredLightRecipeData data : recipes) {
@@ -168,6 +167,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecuttingRecipe(recipeOutput, "iron_plating_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.IRON_PLATING_BLOCK, 2);
         stonecuttingRecipe(recipeOutput, "iron_grate_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.IRON_GRATE_BLOCK, 2);
         stonecuttingRecipe(recipeOutput, "industrial_iron_grate_block_from_iron_ingot", Items.IRON_INGOT, ModBlocks.INDUSTRIAL_IRON_GRATE_BLOCK, 2);
+        stonecuttingRecipe(recipeOutput, "farmland_layers_block_from_dirt", Items.DIRT, LayeredBlocks.FARMLAND_LAYERS_BLOCK, 8);
+        stonecuttingRecipe(recipeOutput, "dirt_path_layers_block_from_dirt", Items.DIRT, LayeredBlocks.DIRT_PATH_LAYERS_BLOCK, 8);
+
 //        stonecuttingRecipe(recipeOutput, "andesite_grate_block_from_andesite_alloy", ingredientFromId("create", "andesite_alloy"), ModBlocks.ANDESITE_GRATE_BLOCK.get(), 2, "create");
         stonecuttingRecipe(recipeOutput,
                 "andesite_grate_block_from_alloy_tag",
